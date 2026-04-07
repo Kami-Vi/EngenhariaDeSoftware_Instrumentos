@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Pagamento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #f8c8dd;
+      padding: 20px;
+      text-align: center;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 500px;
+      background: #ffffff;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #f8c8dd80;
+    }
+
+    .produto {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .produto img {
+      width: 150px;
+      border-radius: 10px;
+      border: 2px solid #f8c8dd;
+    }
+
+    .produto h2 {
+      margin: 10px 0;
+      color: #f8c8dd;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #f8c8dd;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background-color: #ffffff;
+      color: black;
+    }
+
+    input:focus {
+      border: 2px solid #f8c8dd;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #f8c8dd;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      color: black;
+    }
+
+    .btn:hover {
+      background-color: #f8c8dd;
+    }
+
+    footer {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Checkout Seguro
+  </header>
+
+  <div class="container">
+    <div class="produto">
+      <img src="../CadProdutos/CasinhaVermelha.jpg" alt="Produto">
+      <h2>Casinha Vermelha</h2>
+      <p>R$ 1.399,90</p>
+    </div>
+
+    <form action="PagamentoConcluido.html" method="get">
+      <div class="form-group">
+        <label for="nome">Nome no Cartão</label>
+        <input type="text" id="nome" placeholder="Digite o nome impresso no cartão">
+      </div>
+
+      <div class="form-group">
+        <label for="numero">Número do Cartão</label>
+        <input type="text" id="numero" placeholder="0000 0000 0000 0000">
+      </div>
+
+      <div class="form-group">
+        <label for="validade">Validade</label>
+        <input type="text" id="validade" placeholder="MM/AA">
+      </div>
+
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" placeholder="***">
+      </div>
+
+      <button type="submit" class="btn">✅ Pagamento Concluído</button>
+    </form>
+  </div>
+
+  <a href="Escolherpagamento.html" class="btn">⬅ Voltar</a>
+
+  <footer>
+    &copy; 2025 - Loja Exemplo | Todos os direitos reservados
+  </footer>
+</body>
+</html>

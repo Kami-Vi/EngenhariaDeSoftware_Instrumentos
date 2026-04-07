@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Lançamento</title>
+  <link rel="stylesheet" href="Financeiro.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../CadPedidos/CrudPedidos.html">Pedidos</a></li>
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../CadProdutos/CadProdutos.html">Produtos</a></li>
+      <li><a href="#">Financeiro</a></li>
+    </ul>
+  </nav>
+
+  <div class="form-container">
+    <h2>Editar Lançamento</h2>
+    <form>
+      <label for="id">ID do Lançamento:</label>
+      <input type="text" id="id" name="id" value="001" readonly>
+
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data" value="2025-10-13">
+
+      <label for="descricao">Descrição:</label>
+      <input type="text" id="descricao" name="descricao" value="Venda - Casinha Vermelha">
+
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" name="tipo">
+        <option value="receita" selected>Receita</option>
+        <option value="despesa">Despesa</option>
+      </select>
+
+      <label for="categoria">Categoria:</label>
+      <input type="text" id="categoria" name="categoria" value="Vendas">
+
+      <label for="valor">Valor:</label>
+      <input type="text" id="valor" name="valor" value="R$ 1.399,90">
+
+      <label for="pagamento">Forma de Pagamento:</label>
+      <select id="pagamento" name="pagamento">
+        <option>Pix</option>
+        <option selected>Cartão</option>
+        <option>Boleto</option>
+        <option>Dinheiro</option>
+      </select>
+
+      <label for="obs">Observações:</label>
+      <textarea id="obs" name="obs" rows="3">Cliente pagou sinal, restante na entrega.</textarea>
+
+      <button type="submit" class="btn-salvar">Atualizar Lançamento</button>
+    </form>
+  </div>
+</body>
+</html>

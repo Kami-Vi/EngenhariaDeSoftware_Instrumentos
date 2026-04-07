@@ -1,0 +1,134 @@
+/* ===== Importa estilos principais do sistema ===== */
+@import url('../CadPedidos/CrudPedidos.css');
+@import url('../CadPedidos/Pedidos.css');
+
+/* ===== Cores padrão de status ===== */
+.receita {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.despesa {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* Badge de tipo */
+td .receita, td .despesa {
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: #f0f0f0;
+}
+
+/* ===== Painel do formulário ===== */
+.form-container {
+  max-width: 800px;
+  margin: 30px auto 60px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  padding: 35px 40px;
+  border-bottom: 3px solid #f8c8dc;
+  transition: 0.3s;
+}
+
+.form-container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 22px;
+}
+
+/* Campos */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-container label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 14px;
+  background: #fff;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+  border-color: #f8c8dc;
+  box-shadow: 0 0 0 3px rgba(248, 200, 220, 0.3);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Botão salvar */
+.btn-salvar {
+  margin-top: 10px;
+  align-self: center;
+  width: 60%;
+  background-color: #f8c8dc;
+  color: #333;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px rgba(248, 200, 220, 0.3);
+}
+
+.btn-salvar:hover {
+  background-color: #f08fb9;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(240, 143, 185, 0.4);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 900px) {
+  .kpi-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-container {
+    padding: 25px;
+  }
+
+  .btn-salvar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .kpi-container {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-container {
+    margin: 20px;
+  }
+}

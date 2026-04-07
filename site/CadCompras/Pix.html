@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento Pix</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #f8c8dd;
+      padding: 20px;
+      text-align: center;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 500px;
+      background: #ffffff;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #f8c8dd80;
+      text-align: center;
+    }
+
+    .qrcode {
+      margin: 20px 0;
+      background: white;
+      display: inline-block;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #f8c8dd;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #f8c8dd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Pagamento via Pix
+  </header>
+
+  <div class="container">
+    <h2>Casinha Vermelha - R$ 1.399,90</h2>
+    <p>Escaneie o QR Code abaixo no aplicativo do seu banco:</p>
+    <div class="qrcode">
+      <img src="/CadCompras/Meu_QR_code_1-1024 (1).jpeg" alt="QR Code Pix" width="200">
+    </div>
+    <p>Ou copie a chave Pix:</p>
+    <p style="color:#f8c8dd; font-weight:bold;">casinhas@gmail.com</p>
+
+    <a href="PagamentoConcluido.html" class="btn">✅ Concluir Pagamento</a>
+    <br>
+    <a href="Escolherpagamento.html" class="btn">⬅ Voltar</a>
+  </div>
+</body>
+</html>

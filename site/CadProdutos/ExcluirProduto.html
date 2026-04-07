@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Excluir Produto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: white;
+      text-align: center;
+      padding: 40px;
+    }
+
+    header {
+      background-color: #f8c8dc;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .confirm-box {
+      margin-top: 50px;
+      display: inline-block;
+      background: #fff;
+      border: 3px solid #f8c8dc;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #4B3621;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .confirm {
+      background-color: #f3a9ca;
+    }
+
+    .cancel {
+      background-color: #ddd;
+      margin-left: 15px;
+    }
+
+    .confirm:hover {
+      background-color: #f08eb8;
+    }
+
+    .cancel:hover {
+      background-color: #c7c7c7;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Excluir Produto</header>
+
+  <div class="confirm-box">
+    <h2>Tem certeza que deseja excluir este produto?</h2>
+    <p>Produto: <strong>Casinha Vermelha</strong></p>
+    <button class="btn confirm">Sim, excluir</button>
+    <button class="btn cancel">Cancelar</button>
+  </div>
+
+</body>
+</html>

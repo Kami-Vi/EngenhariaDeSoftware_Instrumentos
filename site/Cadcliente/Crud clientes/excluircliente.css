@@ -1,0 +1,71 @@
+/* excluircliente.css */
+body {
+    background-color: #f8f8f6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar {
+    background-color: #f8c8dc;
+    border-bottom: 2px solid #e6a8c5;
+    padding: 10px 20px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar img {
+    width: 200px;
+  }
+  
+  .excluir-container {
+    max-width: 500px;
+    margin: 60px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    text-align: left;
+  }
+  
+  .excluir-container h2 {
+    color: #d63384;
+    margin-bottom: 15px;
+  }
+  
+  .excluir-container p {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
+  
+  .botoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .btn-cancelar, .btn-excluir {
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .btn-cancelar {
+    background-color: #87cefa;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #5aa6d9;
+  }
+  
+  .btn-excluir {
+    background-color: #f08080;
+  }
+  
+  .btn-excluir:hover {
+    background-color: #c94c4c;
+  }
+  

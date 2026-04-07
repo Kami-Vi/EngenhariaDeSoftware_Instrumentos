@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excluir Atendimento</title>
+  <style>
+    body {
+      background-color: #f8f8f6;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #f8c8dc;
+      border-bottom: 2px solid #e6a8c5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 20px;
+      height: 70px;
+    }
+
+    .navbar .logo img {
+      width: 180px;
+      height: auto;
+      padding-top: 10px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #4B3621;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background-color: #D9C3A3;
+      color: #2F1E0F;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 22px;
+      border-bottom: 2px solid #e6a8c5;
+      padding-bottom: 6px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      width: 150px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      margin: 5px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-excluir { background-color: #f08080; }
+    .btn-excluir:hover { background-color: #d95c5c; transform: scale(1.03); }
+
+    .btn-cancelar { background-color: #87cefa; }
+    .btn-cancelar:hover { background-color: #5aa6d9; transform: scale(1.03); }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../CadProdutos/CrudProdutos.html">Início</a></li>
+      <li><a href="CrudAtendimento.html">Atendimento</a></li>
+      <li><a href="../../CadClientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../../CadPedidos/CrudPedidos.html">Pedidos</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>Excluir Atendimento</h2>
+    <p>Tem certeza que deseja excluir o atendimento de <strong>Maria Silva</strong>?</p>
+    <button class="btn btn-excluir">Excluir</button>
+    <a href="CrudAtendimento.html"><button class="btn btn-cancelar">Cancelar</button></a>
+  </div>
+</body>
+</html>

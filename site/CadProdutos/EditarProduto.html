@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Produto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: white;
+    }
+
+    header {
+      background-color: #f8c8dc;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .form-container {
+      background: #fff;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      border: 3px solid #f8c8dc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #4B3621;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #f8c8dc;
+      color: #000;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #f3a9ca;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Editar Produto</header>
+
+  <div class="form-container">
+    <h2>Atualizar Informações</h2>
+    <form>
+      <label>ID do Produto:</label>
+      <input type="text" value="1" readonly>
+
+      <label>Nome:</label>
+      <input type="text" value="Casinha Vermelha">
+
+      <label>Categoria:</label>
+      <input type="text" value="Casinha de Jardim">
+
+      <label>Preço:</label>
+      <input type="number" step="0.01" value="1399.90">
+
+      <label>Estoque:</label>
+      <input type="number" value="12">
+
+      <label>Descrição:</label>
+      <textarea rows="4">Charmosa casinha de madeira pintada em vermelho.</textarea>
+
+      <label>Alterar Imagem:</label>
+      <input type="file" accept="image/*">
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+
+</body>
+</html>

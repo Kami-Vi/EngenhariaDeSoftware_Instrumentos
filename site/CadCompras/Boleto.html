@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <header style="background-color:#f8c8dd; padding:20px; text-align:center; color:black; font-size:1.5rem; font-weight:bold;">
+    <img src="/fabrica_de_casinhas_branca.png" alt="Logo" style="height:200px; display:block; margin:0 auto 15px;">
+    Checkout Seguro
+  </header>
+  
+  
+  
+  
+  
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento Boleto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: black;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #f8c8dd;
+      padding: 20px;
+      text-align: center;
+      color: black;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 500px;
+      background: #ffffff;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px #f8c8dd80;
+      text-align: center;
+    }
+
+    .boleto {
+      margin: 20px 0;
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      text-align: center;
+    }
+
+    .boleto img {
+      display: block;
+      margin: 0 auto 15px auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background-color: #f8c8dd;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #f8c8dd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Pagamento via Boleto
+  </header>
+
+  <div class="container">
+    <h2>Casinha Vermelha - R$ 1.399,90</h2>
+    <p>Use o código de barras abaixo para pagar no banco ou lotérica:</p>
+    
+    <div class="boleto">
+      <img src="/CadCompras/codigo de barra.png" alt="Código de barras" width="250">
+      <p>34191.79001 01043.510047 91020.150008 5 84670000009990</p>
+    </div>
+
+    <a href="PagamentoConcluido.html" class="btn">✅ Pagamento Concluído</a>
+    <br>
+    <a href="Escolherpagamento.html" class="btn">⬅ Voltar</a>
+  </div>
+</body>
+</html>

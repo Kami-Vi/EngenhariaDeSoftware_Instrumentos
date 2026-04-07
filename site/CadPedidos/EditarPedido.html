@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Pedido</title>
+  <link rel="stylesheet" href="Pedidos.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../fabrica_de_casinhas_branca.png" alt="Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../CadProdutos/CadProdutos.html">Produtos</a></li>
+      <li><a href="../CadPedidos/Pedidos.html">Pedidos</a></li>
+      <li><a href="../Cadatendimento/atendimento.html">Contato</a></li>
+    </ul>
+  </nav>
+
+  <div class="form-container">
+    <h2>Editar Pedido</h2>
+    <form>
+      <label for="id">ID do Pedido:</label>
+      <input type="text" id="id" name="id" value="001" readonly>
+
+      <label for="cliente">Cliente:</label>
+      <input type="text" id="cliente" name="cliente" value="Maria Silva">
+
+      <label for="produto">Produto:</label>
+      <input type="text" id="produto" name="produto" value="Casinha Vermelha">
+
+      <label for="cor">Cor:</label>
+      <input type="text" id="cor" name="cor" value="Vermelha">
+
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" name="quantidade" value="1">
+
+      <label for="valor">Valor:</label>
+      <input type="text" id="valor" name="valor" value="R$ 1.399,90">
+
+      <label for="status">Status:</label>
+      <select id="status" name="status">
+        <option>Pendente</option>
+        <option selected>Enviado</option>
+        <option>Entregue</option>
+      </select>
+
+      <button type="submit" class="btn-salvar">Atualizar Pedido</button>
+    </form>
+  </div>
+
+</body>
+</html>

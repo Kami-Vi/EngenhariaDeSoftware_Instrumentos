@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .form-container {
+    width: 400px;
+    margin: 40px auto;
+    background: #ffe6f0; /* rosa claro */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #d63384; /* rosa mais forte */
+  }
+  
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #d63384;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #d63384;
+    border-radius: 6px;
+    margin-top: 4px;
+    background: #fff;
+  }
+  
+  input[readonly] {
+    background: #f8d7e8; /* rosa bem claro p/ diferenciar */
+    color: #555;
+  }
+  
+  button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Botões */
+  .btn-save {
+    background: #d63384;
+    color: white;
+  }
+  
+  .btn-save:hover {
+    background: #b82d70;
+  }
+  
+  .btn-back {
+    background: #fff;
+    border: 1px solid #d63384;
+    color: #d63384;
+  }
+  
+  .btn-back:hover {
+    background: #f8d7e8;
+  }
+  
+  .btn-delete {
+    background: #ff4d6d;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background: #cc3b57;
+  }
+  
+  /* Texto de alerta no excluir */
+  .warning {
+    text-align: center;
+    color: #b82d70;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  
+  /* Ações do excluir */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos - CRUD</title>
+  <link rel="stylesheet" href="CrudProdutos.css">
+  <style>
+    /* Cursor de clique para linhas */
+    tbody tr {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de Navegação -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="./CrudProdutos.html" class="active">Produtos</a></li>
+      <li><a href="../CadPedidos/CrudPedidos.html">Pedidos</a></li>
+      <li><a href="../Cadatendimento/atendimento.html">Contato</a></li>
+      <li><a href="../CadFinanceiro/Financeiro.html">Financeiro</a></li>
+      <li><a href="../../CadCompras/Escolherpagamento.html">Métodos de Pagamento</a></li>
+    </ul>
+  </nav>
+
+  <!-- Container CRUD -->
+  <div class="crud-container">
+    <h2>Produtos Cadastrados</h2>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar produto pelo nome, categoria ou ID...">
+      <button class="btn-search">🔍</button>
+    </div>
+
+    <!-- Botão adicionar -->
+    <a href="./AdicionaProduto.html" class="btn-add">+ Novo Produto</a>
+
+    <!-- Tabela produtos -->
+    <table>
+      <thead>
+        <tr>
+          <th>Ações</th>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Categoria</th>
+          <th>Preço</th>
+          <th>Estoque</th>
+          <th>Descrição</th>
+          <th>Data Cadastro</th>
+          <th>Imagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-link="./VisualizarProduto1.html">
+          <td>
+              <a href="VisualizarProduto1.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarProduto.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirProduto.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>1</td>
+          <td>Casinha Vermelha</td>
+          <td>Casinha de Jardim</td>
+          <td>R$ 1.399,90</td>
+          <td>12</td>
+          <td>Charmosa casinha de madeira pintada em vermelho.</td>
+          <td>15/09/2025</td>
+          <td><img src="../CadProdutos/CasinhaVermelha.jpg" alt="Casinha Vermelha" class="img-produto"></td>
+        </tr>
+
+        <tr data-link="./VisualizarProduto2.html">
+          <td>
+              <a href="VisualizarProduto2.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarProduto.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirProduto.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>2</td>
+          <td>Casinha Azul</td>
+          <td>Casinha de Jardim</td>
+          <td>R$ 1.399,90</td>
+          <td>8</td>
+          <td>Casinha em madeira azul, ideal para jardins pequenos.</td>
+          <td>18/09/2025</td>
+          <td><img src="../CadProdutos/CasinhaAzul.jpg" alt="Casinha Azul" class="img-produto"></td>
+        </tr>
+
+        <tr data-link="./VisualizarProduto3.html">
+          <td>
+              <a href="VisualizarProduto3.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarProduto.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirProduto.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>3</td>
+          <td>Casinha Amarela</td>
+          <td>Casinha de Jardim</td>
+          <td>R$ 1.399,90</td>
+          <td>10</td>
+          <td>Casinha alegre e vibrante para decoração do quintal.</td>
+          <td>20/09/2025</td>
+          <td><img src="../CadProdutos/CasinhaAmarela.jpg" alt="Casinha Amarela" class="img-produto"></td>
+        </tr>
+
+        <tr data-link="./VisualizarProduto4.html">
+          <td>
+              <a href="VisualizarProduto4.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarProduto.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirProduto.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>4</td>
+          <td>Casinha com Playground</td>
+          <td>Casinha Infantil</td>
+          <td>R$ 2.750,00</td>
+          <td>5</td>
+          <td>Modelo com escorregador feito para crianças brincarem.</td>
+          <td>22/09/2025</td>
+          <td><img src="../CadProdutos/CasinhaComEscorregador.jpg" alt="Casinha com Playground" class="img-produto"></td>
+        </tr>
+
+        <tr data-link="./VisualizarProduto5.html">
+          <td>
+              <a href="VisualizarProduto5.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarProduto.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirProduto.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>5</td>
+          <td>Casinha Rosa</td>
+          <td>Casinha Premium</td>
+          <td>R$ 2.999,90</td>
+          <td>3</td>
+          <td>Modelo sustentável pintado em rosa, com dois andares e playground.</td>
+          <td>25/09/2025</td>
+          <td><img src="../CadProdutos/CasinhaRosaDoisAndaresComPlayground.avif" alt="Casinha Rosa" class="img-produto"></td>
+        </tr>
+
+        <tr data-link="./VisualizarProduto6.html">
+          <td>
+              <a href="VisualizarProduto6.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarProduto.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirProduto.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>6</td>
+          <td>Casinha Rústica</td>
+          <td>Casinha de Madeira</td>
+          <td>R$ 3.199,90</td>
+          <td>7</td>
+          <td>Acabamento natural, perfeita para jardins campestres.</td>
+          <td>27/09/2025</td>
+          <td><img src="../CadProdutos/CasinhaRustica.jpg" alt="Casinha Rústica" class="img-produto"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Adiciona clique em toda a linha
+    document.querySelectorAll('tbody tr').forEach(tr => {
+      tr.addEventListener('click', function(e) {
+        // Evita clicar nos botões dentro da linha
+        if(e.target.tagName.toLowerCase() === 'button') return;
+        const link = this.getAttribute('data-link');
+        if(link) window.location.href = link;
+      });
+    });
+  </script>
+
+</body>
+</html>

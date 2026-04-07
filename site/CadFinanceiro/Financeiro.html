@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Financeiro - CRUD</title>
+  <link rel="stylesheet" href="Financeiro.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+
+      <li><a href="../CadPedidos/CrudPedidos.html">Pedidos</a></li>
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../CadProdutos/CrudProdutos.html">Produtos</a></li>
+      
+      <li><a href="../../CadFinanceiro/Financeiro.html">Financeiro</a></li>
+      <li><a href="../../CadCompras/Escolherpagamento.html">Métodos de Pagamento</a></li>
+    </ul>
+  </nav>
+
+  <div class="crud-container">
+    <h2>Controle Financeiro</h2>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar por data, categoria, descrição ou valor...">
+      <button class="btn-search">🔍</button>
+    </div>
+
+    <a href="AdicionarFinanceiro.html" class="btn-add">+ Novo Lançamento</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ações</th>
+          <th>ID</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Forma de Pagamento</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <button class="btn visualizar" onclick="window.location.href='./DetalhesFinanceiro.html'">👁</button>
+            <button class="btn editar" onclick="window.location.href='./EditarFinanceiro.htm'">✏</button>
+            <button class="btn excluir" onclick="window.location.href='./ExcluirFinanceiro.html'">✖</button>
+            <!--<a href="vizualizarcliente.html"><button class="btn visualizar">👁</button></a>-->
+          </td>
+          <td>001</td>
+          <td>Venda - Casinha Vermelha</td>
+          <td>Vendas</td>
+          <td><span class="receita">Receita</span></td>
+          <td>R$ 1.399,90</td>
+          <td>Pix</td>
+          <td>13/10/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <button class="btn visualizar" onclick="window.location.href='./DetalhesFinanceiro.html'">👁</button>
+            <button class="btn editar" onclick="window.location.href='./EditarFinanceiro.html'">✏</button>
+            <button class="btn excluir" onclick="window.location.href='./ExcluirFinanceiro.html'">✖</button>
+          </td>
+          <td>002</td>
+          <td>Compra de Materiais</td>
+          <td>Fornecedores</td>
+          <td><span class="despesa">Despesa</span></td>
+          <td>R$ 899,90</td>
+          <td>Cartão</td>
+          <td>14/10/2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

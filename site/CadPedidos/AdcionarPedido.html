@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar Pedido</title>
+  <link rel="stylesheet" href="Pedidos.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../fabrica_de_casinhas_branca.png" alt="Logo" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Início</a></li>
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../CadProdutos/CadProdutos.html">Produtos</a></li>
+      <li><a href="../CadPedidos/Pedidos.html">Pedidos</a></li>
+      <li><a href="../Cadatendimento/atendimento.html">Contato</a></li>
+    </ul>
+  </nav>
+
+  <div class="form-container">
+    <h2>Adicionar Novo Pedido</h2>
+    <form>
+      <label for="cliente">Cliente:</label>
+      <input type="text" id="cliente" name="cliente" placeholder="Nome do cliente" required>
+
+      <label for="produto">Produto:</label>
+      <input type="text" id="produto" name="produto" placeholder="Nome do produto" required>
+
+      <label for="cor">Cor:</label>
+      <input type="text" id="cor" name="cor" placeholder="Cor do produto" required>
+
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" name="quantidade" placeholder="Ex: 2" required>
+
+      <label for="valor">Valor:</label>
+      <input type="text" id="valor" name="valor" placeholder="R$ 0,00" required>
+
+      <label for="status">Status:</label>
+      <select id="status" name="status">
+        <option>Pendente</option>
+        <option>Enviado</option>
+        <option>Entregue</option>
+      </select>
+
+      <button type="submit" class="btn-salvar">Salvar Pedido</button>
+    </form>
+  </div>
+
+</body>
+</html>

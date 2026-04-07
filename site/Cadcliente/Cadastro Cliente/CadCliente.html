@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro Cliente</title>
+  <link rel="stylesheet" href="CadCliente.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação (somente logo) -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+  </nav>
+
+  <!-- Formulário -->
+  <div class="form-container">
+
+    <!-- Botão Voltar -->
+    <a href="../Crud clientes/CrudCliente.html" class="btn-voltar">← Voltar ao CRUD</a>
+
+    <h2>Cadastro de Cliente</h2>
+    <p class="subtitulo">Informe seus dados para continuar</p>
+    <form>
+
+      <label for="nome">Nome Completo</label>
+      <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva Souza">
+
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" name="cpf" placeholder="Ex: 123.456.789-00">
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="Ex: joao@email.com">
+
+      <label for="telefone">Telefone</label>
+      <input type="tel" id="telefone" name="telefone" placeholder="Ex: (49) 99999-9999">
+
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" placeholder="Crie uma senha segura">
+
+      <label for="confirmaSenha">Confirmar Senha</label>
+      <input type="password" id="confirmaSenha" name="confirmaSenha" placeholder="Digite novamente a senha">
+
+      <label for="cep">CEP</label>
+      <input type="text" id="cep" name="cep" placeholder="Ex: 89801-000">
+
+      <label for="tipoEndereco">Tipo de Endereço</label>
+      <select id="tipoEndereco" name="tipoEndereco">
+        <option value="rua">Rua</option>
+        <option value="avenida">Avenida</option>
+        <option value="servidao">Servidão</option>
+        <option value="travessa">Travessa</option>
+        <option value="estrada">Estrada</option>
+        <option value="rodovia">Rodovia</option>
+      </select>
+
+      <label for="logradouro">Logradouro</label>
+      <input type="text" id="logradouro" name="logradouro" placeholder="Ex: Rua das Flores, Avenida Brasil, Servidão João Paulo II">
+
+      <label for="numero">Número</label>
+      <input type="text" id="numero" name="numero" placeholder="Ex: 123">
+
+      <label for="complemento">Complemento</label>
+      <input type="text" id="complemento" name="complemento" placeholder="Ex: Bloco B, Apto 302">
+
+      <label for="estado">Estado</label>
+      <select id="estado" name="estado">
+        <option value="sc">Santa Catarina</option>
+        <option value="pr">Paraná</option>
+        <option value="rs">Rio Grande do Sul</option>
+      </select>
+
+      <label for="cidade">Cidade</label>
+      <select id="cidade" name="cidade">
+        <!-- SC -->
+        <option value="chapeco">Chapecó (SC)</option>
+        <option value="xanxere">Xanxerê (SC)</option>
+        <option value="concordia">Concórdia (SC)</option>
+        <option value="jba">Joaçaba (SC)</option>
+        <option value="smo">São Miguel do Oeste (SC)</option>
+
+        <!-- PR -->
+        <option value="curitiba">Curitiba (PR)</option>
+        <option value="cascavel">Cascavel (PR)</option>
+        <option value="foz">Foz do Iguaçu (PR)</option>
+        <option value="londrina">Londrina (PR)</option>
+        <option value="maringa">Maringá (PR)</option>
+
+        <!-- RS -->
+        <option value="portoalegre">Porto Alegre (RS)</option>
+        <option value="caxias">Caxias do Sul (RS)</option>
+        <option value="santamaria">Santa Maria (RS)</option>
+        <option value="pelotas">Pelotas (RS)</option>
+        <option value="passofundo">Passo Fundo (RS)</option>
+      </select>
+
+      <!-- Botão Cadastrar como link -->
+      <a href="../Crud clientes/CrudCliente.html" class="btn-cadastrar">Cadastrar</a>
+    </form>
+
+    <p class="login-link">Já tem cadastro? <a href="../Entrar Cliente/Entrar.html">Entrar</a></p>
+  </div>
+
+</body>
+</html>
+ 

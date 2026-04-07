@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Atendimento - CRUD</title>
+  <link rel="stylesheet" href="atendimento.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../CadClientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../../CadProdutos/CrudProdutos.html">Produtos</a></li>
+      <li><a href="../../CadPedidos/CrudPedidos.html">Pedidos</a></li>
+      <li><a href="atendimento.html">Contato</a></li>
+      <li><a href="../../CadFinanceiro/Financeiro.html">Financeiro</a></li>
+      <li><a href="../../CadCompras/Escolherpagamento.html">Métodos de Pagamento</a></li>
+    </ul>
+  </nav>
+
+  <!-- Container CRUD -->
+  <div class="crud-container">
+    <h2>Atendimentos Registrados</h2>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar atendimento por ID, nome ou tipo...">
+      <button class="btn-search">🔍</button>
+    </div>
+
+    <!-- Botão adicionar -->
+    <a href="NovoAtendimento.html" class="btn-add">+ Novo Atendimento</a>
+
+    <!-- Tabela de atendimentos -->
+    <table>
+      <thead>
+        <tr>
+          <th>Ações</th>
+          <th>ID</th>
+          <th>Nome do Cliente</th>
+          <th>Tipo de Contato</th>
+          <th>Mensagem / Problema</th>
+          <th>Status</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="acoes">
+              <a href="atendimento.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarAtendimento.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirAtendimento.html"><button class="btn excluir">✖</button></a>
+            </div>
+          </td> 
+          <td>1</td>
+          <td>Maria Silva</td>
+          <td>WhatsApp</td>
+          <td>Problemas com entrega</td>
+          <td>Resolvido</td>
+          <td>12/09/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="acoes">
+              <a href="VisualizarAtendimento.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarAtendimento.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirAtendimento.html"><button class="btn excluir">✖</button></a>
+            </div>
+          </td>
+          <td>2</td>
+          <td>João Pereira</td>
+          <td>E-mail</td>
+          <td>Dúvida sobre pagamento</td>
+          <td>Em andamento</td>
+          <td>14/09/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="acoes">
+              <a href="VisualizarAtendimento.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarAtendimento.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirAtendimento.html"><button class="btn excluir">✖</button></a>
+            </div>
+          </td>
+          <td>3</td>
+          <td>Ana Costa</td>
+          <td>Telefone</td>
+          <td>Produto com defeito</td>
+          <td>Resolvido</td>
+          <td>15/09/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="acoes">
+              <a href="VisualizarAtendimento.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarAtendimento.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirAtendimento.html"><button class="btn excluir">✖</button></a>
+            </div>
+          </td>
+          <td>4</td>
+          <td>Carlos Mendes</td>
+          <td>Chat</td>
+          <td>Dificuldade para rastrear pedido</td>
+          <td>Pendente</td>
+          <td>17/09/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="acoes">
+              <a href="VisualizarAtendimento.html"><button class="btn visualizar">👁</button></a>
+              <a href="EditarAtendimento.html"><button class="btn editar">✏</button></a>
+              <a href="ExcluirAtendimento.html"><button class="btn excluir">✖</button></a>
+            </div>
+          </td>
+          <td>5</td>
+          <td>Fernanda Rocha</td>
+          <td>Formulário</td>
+          <td>Erro ao enviar relato</td>
+          <td>Em análise</td>
+          <td>19/09/2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Cliente</title>
+  <link rel="stylesheet" href="editarcliente.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+  </nav>
+
+  <!-- Formulário -->
+  <div class="form-container">
+    <h2>Editar Cliente</h2>
+    <form id="formEditarCliente">
+      <label for="id">ID</label>
+      <input type="text" id="id" value="1" disabled>
+
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" value="Maria Silva">
+
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" value="123.456.789-00" disabled>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" value="maria@email.com">
+
+      <label for="telefone">Telefone</label>
+      <input type="tel" id="telefone" value="(49) 98888-7777">
+
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" value="Chapecó (SC)">
+
+      <label for="dataCadastro">Data de Cadastro</label>
+      <input type="text" id="dataCadastro" value="15/09/2025" disabled>
+
+      <button type="submit" class="btn-salvar">Salvar Alterações</button>
+      <a href="../Crud clientes/CrudCliente.html" class="btn-cancelar">Cancelar</a>
+    </form>
+  </div>
+
+  <!-- Script para carregar e salvar dados -->
+  <script>
+    // Exemplo de como futuramente pode ser integrado com backend
+    document.getElementById("formEditarCliente").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const clienteEditado = {
+        id: document.getElementById("id").value,
+        nome: document.getElementById("nome").value,
+        cpf: document.getElementById("cpf").value,
+        email: document.getElementById("email").value,
+        telefone: document.getElementById("telefone").value,
+        cidade: document.getElementById("cidade").value,
+        dataCadastro: document.getElementById("dataCadastro").value
+      };
+
+      console.log("Dados salvos:", clienteEditado);
+      alert("Alterações salvas com sucesso!");
+      // Aqui você pode adicionar um redirecionamento ou integração real
+    });
+  </script>
+</body>
+</html>

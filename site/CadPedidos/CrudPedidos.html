@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos - CRUD</title>
+  <link rel="stylesheet" href="CrudPedidos.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../CadProdutos/CrudProdutos.html">Produtos</a></li>
+      <li><a href="../CadPedidos/CrudPedidos.html">Pedidos</a></li>
+      <li><a href="../Cadatendimento/atendimento.html">Contato</a></li>
+      <li><a href="../CadFinanceiro/Financeiro.html">Financeiro</a></li>
+      <li><a href="../../CadCompras/Escolherpagamento.html">Métodos de Pagamento</a></li>
+    </ul>
+  </nav>
+
+  <!-- Container CRUD -->
+  <div class="crud-container">
+    <h2>Pedidos Registrados</h2>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar pedido por número, cliente ou status...">
+      <button class="btn-search">🔍</button>
+    </div>
+
+    <!-- Botão adicionar -->
+    <a href="../CadPedidos/AdcionarPedido.html" class="btn-add">+ Novo Pedido</a>
+
+    <!-- Tabela pedidos -->
+    <table>
+      <thead>
+        <tr>
+          <th>Ações</th>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Valor Total</th>
+          <th>Status</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="./Detalhes do Pedido1.html"><button class="btn visualizar">👁</button></a>
+            <a href="./EditarPedido.html"><button class="btn editar">✏</button></a>
+            <a href="ExcluirPedido.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>001</td>
+          <td>Maria Silva</td>
+          <td>Casinha Vermelha</td>
+          <td>1</td>
+          <td>R$ 1.399,90</td>
+          <td>Enviado</td>
+          <td>15/09/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="./Detalhes do Pedido2.html"><button class="btn visualizar">👁</button></a>
+            <a href="./EditarPedido.html"><button class="btn editar">✏</button></a>
+            <a href="./ExluirPedido.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>002</td>
+          <td>João Pereira</td>
+          <td>Casinha Rosa</td>
+          <td>1</td>
+          <td>R$ 2.999,90</td>
+          <td>Entregue</td>
+          <td>18/09/2025</td>
+        </tr>
+        <tr>
+          <td>
+            <a href="./Detalhes do Pedido3.html"><button class="btn visualizar">👁</button></a>
+            <a href="./EditarPedido.html"><button class="btn editar">✏</button></a>
+            <a href="./ExluirPedido.html"><button class="btn excluir">✖</button></a>
+          </td>
+          <td>003</td>
+          <td>Ana Costa</td>
+          <td>Casinha Rústica</td>
+          <td>1</td>
+          <td>R$ 3.199,90</td>
+          <td>Pendente</td>
+          <td>22/09/2025</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

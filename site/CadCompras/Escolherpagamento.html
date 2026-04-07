@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Pagamentos</title>
+<style>
+/* Fundo */
+body {
+  background-color: #f8f8f6;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra de navegação */
+.navbar {
+  background-color: #f8c8dc;
+  border-bottom: 2px solid #e6a8c5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  height: 70px;
+}
+
+.navbar .logo img {
+  width: 180px;
+  height: auto;
+  padding-top: 10px;
+}
+
+/* Navegação */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4B3621;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #D9C3A3;
+  color: #2F1E0F;
+}
+
+/* Container CRUD */
+.crud-container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+
+.crud-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Botão adicionar */
+.btn-add {
+  display: inline-block;
+  background-color: #e68eb2;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 0 20px 0;
+  transition: background 0.3s, transform 0.2s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-add:hover {
+  background-color: #d63384;
+  transform: scale(1.03);
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table thead th {
+  background-color: #e6a8c5;
+  color: #333;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Botões de ação */
+.btn {
+  border: none;
+  padding: 6px 10px;
+  margin: 0 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+.visualizar {
+  background-color: #87cefa; /* azul */
+}
+
+.editar {
+  background-color: #ffd966; /* amarelo */
+  color: black;
+}
+
+.excluir {
+  background-color: #f08080; /* vermelho */
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* Área de ações */
+.acoes {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.acoes .btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Links dos botões */
+.acoes a {
+  text-decoration: none;
+}
+
+.acoes a:visited,
+.acoes a:focus,
+.acoes a:hover {
+  text-decoration: none;
+}
+</style>
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../../fabrica_de_casinhas_branca.png" alt="Logo da Empresa">
+    </div>
+    <ul class="nav-links">
+      
+      <li><a href="../Cadcliente/Crud clientes/CrudCliente.html">Clientes</a></li>
+      <li><a href="../CadProdutos/CrudProdutos.html">Produtos</a></li>
+      <li><a href="../Cadatendimento/atendimento.html">Contato</a></li>
+      <li><a href="../CadFinanceiro/Financeiro.html">Financeiro</a></li>
+      <li><a href="../../CadCompras/Escolherpagamento.html">Métodos de Pagamento</a></li>
+    </ul>
+  </nav>
+
+  <div class="crud-container">
+    <h2>Pagamentos Cadastrados</h2>
+
+    <!-- Botão Adicionar -->
+    <a href="./AdicionarPagamento.html" class="btn-add">+ Novo Pagamento</a>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ações</th>
+          <th>ID</th>
+          <th>Forma de Pagamento</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-link="Cartao.html">
+          <td>
+            <button class="btn visualizar" onclick="window.location.href='Cartao.html'">👁</button>
+            <button class="btn editar" onclick="window.location.href='EditarPagamento.html'">✏</button>
+            <button class="btn excluir" onclick="window.location.href='ExcluirPagamento.html'">✖</button>
+          </td>
+          <td>1</td>
+          <td>Cartão</td>
+          <td>Pagamento com cartão de crédito ou débito.</td>
+        </tr>
+
+        <tr data-link="Pix.html">
+          <td>
+            <button class="btn visualizar" onclick="window.location.href='Pix.html'">👁</button>
+            <button class="btn editar" onclick="window.location.href='EditarPagamento.html'">✏</button>
+            <button class="btn excluir" onclick="window.location.href='ExcluirPagamento.html'">✖</button>
+          </td>
+          <td>2</td>
+          <td>Pix</td>
+          <td>Pagamento instantâneo via Pix.</td>
+        </tr>
+
+        <tr data-link="Boleto.html">
+          <td>
+            <button class="btn visualizar" onclick="window.location.href='Boleto.html'">👁</button>
+            <button class="btn editar" onclick="window.location.href='EditarPagamento.html'">✏</button>
+            <button class="btn excluir" onclick="window.location.href='ExcluirPagamento.html'">✖</button>
+          </td>
+          <td>3</td>
+          <td>Boleto</td>
+          <td>Pagamento via boleto bancário.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Linha inteira clicável
+    document.querySelectorAll('tbody tr').forEach(tr => {
+      tr.addEventListener('click', function(e) {
+        if(e.target.tagName.toLowerCase() === 'button') return; // ignora clique nos botões
+        const link = this.getAttribute('data-link');
+        if(link) window.location.href = link;
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* Fundo */
+body {
+  background-color: #f8f8f6; /* off white */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra de navegação (apenas logo) */
+.navbar {
+  background-color: #f8c8dc; /* rosa claro */
+  border-bottom: 2px solid #e6a8c5;
+  display: flex;
+  justify-content: flex-start; /* logo à esquerda */
+  align-items: center;
+  padding: 8px 20px;
+  height: 70px;
+}
+
+.navbar .logo img {
+  width: 180px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Formulário */
+.form-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Inputs */
+input[type=email],
+input[type=password] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Botão Entrar (link estilizado) */
+.btn-entrar {
+  display: block;
+  width: 100%;
+  background-color: #e68eb2;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  padding-right: 0px;
+  margin-top: 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-entrar:hover {
+  background-color: #d63384;
+}
+
+/* Link para cadastro */
+.register-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #d67a9c;
+}
+
+.register-link a {
+  text-decoration: none;
+  color: #d63384;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

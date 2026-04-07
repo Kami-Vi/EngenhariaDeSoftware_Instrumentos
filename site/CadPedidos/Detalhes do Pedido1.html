@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Pedido</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff; /* Fundo branco mais leve */
+      color: #444; /* Texto mais suave que preto */
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #f8c8dc;
+      padding: 20px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+    }
+    .container {
+      padding: 25px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h2 {
+      color: #f08fb9; /* Rosa um pouco mais forte para contraste */
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .section {
+      border-left: 4px solid #f8c8dc; /* Barra rosa ao lado */
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      background: #fafafa; /* Fundo bem claro para destacar */
+      border-radius: 8px;
+      box-shadow: 0px 1px 3px rgba(0,0,0,0.05);
+    }
+    .info {
+      margin: 6px 0;
+    }
+    .valor {
+      font-weight: bold;
+      color: #f08fb9;
+    }
+    .btn-voltar {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 18px;
+      background: #f8c8dc;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-voltar:hover {
+      background: #f08fb9;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>Detalhes do Pedido</header>
+
+
+  <div class="container">
+
+    <div class="section">
+      <h2>Itens do Pedido</h2>
+      <div class="info"><b>Produto:</b> Casinha Vermelha</div>
+      <div class="info"><b>Cor:</b> Vermelha</div>
+      <div class="info"><b>Tamanho:</b> 3x4m</div>
+      <div class="info"><b>Quantidade:</b> 1</div>
+      <div class="info"><b>Valor:</b> R$ 1.399,90</div>
+    </div>
+
+    <div class="section">
+      <h2>Resumo do Pedido</h2>
+      <div class="info"><b>Pedido:</b> </div>
+      <div class="info"><b>Data:</b> </div>
+    </div>
+
+    <div class="section">
+      <h2>Endereço de Entrega</h2>
+      <div class="info">Rua / Número</div>
+      <div class="info">Esplanada - Chapecó - SC</div>
+      <div class="info">CEP: 89812-440</div>
+    </div>
+
+    <div class="section">
+      <h2>Forma de Pagamento</h2>
+      <div class="info">Cartão de Crédito</div>
+      <div class="info valor"> R$ 1.399,90</div>
+    </div>
+
+    <div class="section">
+      <h2>Total da Compra</h2>
+      <div class="info">Subtotal:  R$ 1.399,90</div>
+      <div class="info">Frete: Grátis</div>
+      <div class="info valor">Valor Total:  R$ 1.399,90</div>
+    </div>
+
+    <a href="CrudPedidos.html" class="btn-voltar">⬅ Voltar</a>
+  </div>
+</body>
+</html>
+
