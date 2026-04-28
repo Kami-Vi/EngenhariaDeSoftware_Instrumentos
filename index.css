@@ -33,7 +33,7 @@ body {
 
 .sidebar li {
     margin: 15px 0;
-    background: rgb(65, 0, 0);
+    background: rgb(255, 255, 255);
     flex: 1;
     padding: 10px;
     border-radius: 8px;
