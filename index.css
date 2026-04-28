@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* BODY */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+}
+
+
+/* SIDEBAR */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgb(75, 0, 0);
+    padding: 20px;
+}
+
+
+.sidebar ul {
+    list-style: none;
+    margin-top: 30px;
+   
+}
+
+
+.sidebar li {
+    margin: 15px 0;
+    background: rgb(65, 0, 0);
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+.sidebar li:hover {
+    transform: translateY(-3px);
+}
+   
+
+
+.sidebar a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+
+/* LOGO */
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 10px;
+}
+
+
+/* MAIN */
+.main {
+    margin-left: 250px;
+    padding: 30px;
+}
+
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+.card {
+    background: white;
+    flex: 1;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+
+.card p {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(117, 0, 0);
+}
+
+
+/* MURAL */
+.quadro-container h2 {
+    margin-bottom: 20px;
+    color: rgb(117, 0, 0);
+}
+
+
+.aviso {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    position: relative;
+    transition: 0.2s;
+}
+
+
+.aviso:hover {
+    transform: translateY(-3px);
+}
+
+
+/* DATA */
+.data {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 0.8em;
+    color: #999;
+}
+
+
+/* TEXTO */
+.aviso h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+.aviso p {
+    color: #555;
+    line-height: 1.5;
+}
