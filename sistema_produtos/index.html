@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sistema Produtos</title>
+
+<style>
+body { font-family: Arial; background:#111; color:white; padding:20px; }
+input, select, textarea, button { padding:8px; margin:5px; }
+table { width:100%; margin-top:20px; border-collapse:collapse; }
+td, th { border:1px solid #444; padding:8px; }
+</style>
+</head>
+
+<body>
+
+<h2>Cadastro de Produto</h2>
+
+<input id="nome" placeholder="Nome">
+<input id="marca" placeholder="Marca">
+
+<select id="categoria">
+<option value="">Categoria</option>
+<option value="Instrumento">Instrumento</option>
+<option value="Acessório">Acessório</option>
+</select>
+
+<input id="tipo" placeholder="Tipo">
+<textarea id="especificacoes" placeholder="Especificações"></textarea>
+
+<input id="fornecedor" placeholder="Fornecedor">
+<input id="garantia" placeholder="Garantia">
+<input id="contato" placeholder="Contato">
+
+<button onclick="salvarProduto()">Salvar</button>
+
+<h2>Produtos</h2>
+
+<input id="busca" placeholder="Buscar..." onkeyup="filtrar()">
+
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Marca</th>
+<th>Categoria</th>
+<th>Tipo</th>
+<th>Fornecedor</th>
+<th>Garantia</th>
+<th>Ações</th>
+</tr>
+</thead>
+
+<tbody id="tabela"></tbody>
+</table>
+
+<script>
+
+let produtos = [];
+
+// ================= CARREGAR =================
+function carregarProdutos() {
+    fetch("api.php")
+    .then(r => r.json())
+    .then(data => {
+
+        produtos = data.map(p => ({
+            id: p.idProdutos,
+            nome: p.Tipo || "Produto",
+            marca: p.Marca,
+            categoria: p.Categoria,
+            tipo: p.Tipo,
+            especificacoes: p.Especificacoes,
+            fornecedor: p.NomeEmpresa,
+            garantia: p.Garantia
+        }));
+
+        render(produtos);
+    });
+}
+
+// ================= RENDER =================
+function render(lista) {
+    tabela.innerHTML = "";
+
+    lista.forEach(p => {
+        tabela.innerHTML += `
+        <tr>
+        <td>${p.nome}</td>
+        <td>${p.marca}</td>
+        <td>${p.categoria}</td>
+        <td>${p.tipo}</td>
+        <td>${p.fornecedor}</td>
+        <td>${p.garantia || "-"}</td>
+        <td>
+            <button onclick="excluir(${p.id})">X</button>
+        </td>
+        </tr>`;
+    });
+}
+
+// ================= SALVAR =================
+function salvarProduto() {
+
+    let produto = {
+        nome: nome.value,
+        marca: marca.value,
+        categoria: categoria.value,
+        tipo: tipo.value,
+        especificacoes: especificacoes.value,
+        fornecedor: fornecedor.value,
+        garantia: garantia.value,
+        contato: contato.value
+    };
+
+    fetch("api.php", {
+        method: "POST",
+        body: JSON.stringify(produto)
+    })
+    .then(() => {
+        limpar();
+        carregarProdutos();
+    });
+}
+
+// ================= EXCLUIR =================
+function excluir(id) {
+
+    if (!confirm("Excluir?")) return;
+
+    fetch("api.php?id=" + id, {
+        method: "DELETE"
+    })
+    .then(() => carregarProdutos());
+}
+
+// ================= FILTRO =================
+function filtrar() {
+
+    let termo = busca.value.toLowerCase();
+
+    let filtrado = produtos.filter(p =>
+        p.nome.toLowerCase().includes(termo) ||
+        p.marca.toLowerCase().includes(termo) ||
+        p.categoria.toLowerCase().includes(termo)
+    );
+
+    render(filtrado);
+}
+
+// ================= LIMPAR =================
+function limpar() {
+    nome.value = "";
+    marca.value = "";
+    categoria.value = "";
+    tipo.value = "";
+    especificacoes.value = "";
+    fornecedor.value = "";
+    garantia.value = "";
+    contato.value = "";
+}
+
+// ================= INIT =================
+carregarProdutos();
+
+</script>
+
+</body>
+</html>
