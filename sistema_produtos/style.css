@@ -1,0 +1,105 @@
+* { box-sizing: border-box; }
+
+body {
+    margin:0;
+    font-family: Arial;
+    background:#e9e7e3;
+}
+
+/* HEADER */
+.header {
+    background:#1d4d2c;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* GRID */
+.container {
+    display:flex;
+    padding:20px;
+    gap:20px;
+}
+
+/* CARD */
+.card {
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* LEFT */
+.left {
+    width:300px;
+}
+
+/* RIGHT */
+.right {
+    flex:1;
+}
+
+/* INPUTS */
+input, select, textarea {
+    width:100%;
+    padding:8px;
+    margin:5px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* BUTTON */
+button {
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-green {
+    background:#1d4d2c;
+    color:white;
+}
+
+/* STATS */
+.stats {
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.stat {
+    flex:1;
+    text-align:center;
+    padding:15px;
+    border-radius:10px;
+    background:#f4f4f4;
+}
+
+/* TABLE */
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td {
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+th {
+    background:#f0f0f0;
+}
+
+/* FILTER */
+.filtros {
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.filtros input {
+    flex:1;
+}
