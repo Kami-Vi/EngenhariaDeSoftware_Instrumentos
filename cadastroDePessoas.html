@@ -13,7 +13,6 @@ body {
     background:#e9e7e3;
 }
 
-/* HEADER */
 .header {
     background:rgb(75,0,0);
     color:white;
@@ -28,12 +27,10 @@ body {
     text-decoration: none;
 }
 
-/* LOGO */
 .logo-area img {
     height:80px;
 }
 
-/* TITULO */
 .titulo-header {
     font-size:20px;
     font-weight:bold;
@@ -41,14 +38,12 @@ body {
     text-align:center;
 }
 
-/* GRID */
 .container {
     display:flex;
     padding:20px;
     gap:20px;
 }
 
-/* CARD */
 .card {
     background:white;
     border-radius:10px;
@@ -56,13 +51,9 @@ body {
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* LEFT */
 .left { width:300px; }
-
-/* RIGHT */
 .right { flex:1; }
 
-/* INPUTS */
 input, select {
     width:100%;
     padding:8px;
@@ -71,9 +62,8 @@ input, select {
     border:1px solid #ccc;
 }
 
-/* BUTTON */
 button {
-    padding:10px;
+    padding:8px;
     border:none;
     border-radius:6px;
     cursor:pointer;
@@ -84,7 +74,16 @@ button {
     color:white;
 }
 
-/* TABLE */
+.btn-edit {
+    background:orange;
+    color:white;
+}
+
+.btn-delete {
+    background:red;
+    color:white;
+}
+
 table {
     width:100%;
     border-collapse:collapse;
@@ -100,7 +99,6 @@ th {
     background:#f0f0f0;
 }
 
-/* FILTER */
 .filtros {
     display:flex;
     gap:10px;
@@ -131,7 +129,7 @@ th {
 
     <!-- FORM -->
     <div class="left card">
-        <h3>Cadastrar</h3>
+        <h3>Cadastrar / Editar</h3>
 
         <form id="formCadastro">
             <input type="text" id="nome" placeholder="Nome" required>
@@ -145,7 +143,7 @@ th {
                 <option value="Funcionário">Funcionário</option>
             </select>
 
-            <button class="btn-green">Cadastrar</button>
+            <button class="btn-green">Salvar</button>
         </form>
     </div>
 
@@ -165,6 +163,7 @@ th {
                     <th>CPF</th>
                     <th>Telefone</th>
                     <th>Categoria</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="tabela"></tbody>
@@ -176,6 +175,7 @@ th {
 
 <script>
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let editIndex = null;
 
 function salvarLocal() {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
@@ -185,7 +185,7 @@ function renderizar(lista) {
     const tabela = document.getElementById("tabela");
     tabela.innerHTML = "";
 
-    lista.forEach(user => {
+    lista.forEach((user, index) => {
         tabela.innerHTML += `
             <tr>
                 <td>${user.nome}</td>
@@ -193,12 +193,16 @@ function renderizar(lista) {
                 <td>${user.cpf}</td>
                 <td>${user.telefone}</td>
                 <td>${user.categoria}</td>
+                <td>
+                    <button class="btn-edit" onclick="editar(${index})">Editar</button>
+                    <button class="btn-delete" onclick="excluir(${index})">Excluir</button>
+                </td>
             </tr>
         `;
     });
 }
 
-// CADASTRAR
+// CADASTRAR OU EDITAR
 document.getElementById("formCadastro").addEventListener("submit", function(e){
     e.preventDefault();
 
@@ -210,12 +214,39 @@ document.getElementById("formCadastro").addEventListener("submit", function(e){
         categoria: categoria.value
     };
 
-    usuarios.push(usuario);
+    if (editIndex === null) {
+        usuarios.push(usuario);
+    } else {
+        usuarios[editIndex] = usuario;
+        editIndex = null;
+    }
+
     salvarLocal();
     renderizar(usuarios);
-
     this.reset();
 });
+
+// EDITAR
+function editar(index) {
+    const user = usuarios[index];
+
+    nome.value = user.nome;
+    email.value = user.email;
+    cpf.value = user.cpf;
+    telefone.value = user.telefone;
+    categoria.value = user.categoria;
+
+    editIndex = index;
+}
+
+// EXCLUIR
+function excluir(index) {
+    if (confirm("Deseja excluir este usuário?")) {
+        usuarios.splice(index, 1);
+        salvarLocal();
+        renderizar(usuarios);
+    }
+}
 
 // BUSCA
 function filtrar() {
@@ -230,8 +261,8 @@ function filtrar() {
     renderizar(filtrados);
 }
 
-document.getElementById("buscaNome").addEventListener("input", filtrar);
-document.getElementById("buscaCpf").addEventListener("input", filtrar);
+buscaNome.addEventListener("input", filtrar);
+buscaCpf.addEventListener("input", filtrar);
 
 // INICIAL
 renderizar(usuarios);
