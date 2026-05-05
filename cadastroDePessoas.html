@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro - Loja</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin:0;
+    font-family: Arial;
+    background:#e9e7e3;
+}
+
+.header {
+    background:rgb(75,0,0);
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+#voltar {
+    color: white;
+    text-decoration: none;
+}
+
+.logo-area img {
+    height:80px;
+}
+
+.titulo-header {
+    font-size:20px;
+    font-weight:bold;
+    flex:1;
+    text-align:center;
+}
+
+.container {
+    display:flex;
+    padding:20px;
+    gap:20px;
+}
+
+.card {
+    background:white;
+    border-radius:10px;
+    padding:15px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.left { width:300px; }
+.right { flex:1; }
+
+input, select {
+    width:100%;
+    padding:8px;
+    margin:5px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+button {
+    padding:8px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn-green {
+    background:rgb(117,0,0);
+    color:white;
+}
+
+.btn-edit {
+    background:orange;
+    color:white;
+}
+
+.btn-delete {
+    background:red;
+    color:white;
+}
+
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td {
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+th {
+    background:#f0f0f0;
+}
+
+.filtros {
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+}
+
+.filtros input {
+    flex:1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo-area">
+        <img src="logo.png">
+    </div>
+
+    <div class="titulo-header">
+        Cadastro de Usuários
+    </div>
+
+    <a href="index.html" id="voltar">Voltar</a>
+</div>
+
+<div class="container">
+
+    <!-- FORM -->
+    <div class="left card">
+        <h3>Cadastrar / Editar</h3>
+
+        <form id="formCadastro">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="cpf" placeholder="CPF" required>
+            <input type="tel" id="telefone" placeholder="Telefone" required>
+
+            <select id="categoria" required>
+                <option value="">Categoria</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Funcionário">Funcionário</option>
+            </select>
+
+            <button class="btn-green">Salvar</button>
+        </form>
+    </div>
+
+    <!-- LISTA -->
+    <div class="right card">
+
+        <div class="filtros">
+            <input type="text" id="buscaNome" placeholder="Buscar por nome">
+            <input type="text" id="buscaCpf" placeholder="Buscar por CPF">
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+let editIndex = null;
+
+function salvarLocal() {
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+}
+
+function renderizar(lista) {
+    const tabela = document.getElementById("tabela");
+    tabela.innerHTML = "";
+
+    lista.forEach((user, index) => {
+        tabela.innerHTML += `
+            <tr>
+                <td>${user.nome}</td>
+                <td>${user.email}</td>
+                <td>${user.cpf}</td>
+                <td>${user.telefone}</td>
+                <td>${user.categoria}</td>
+                <td>
+                    <button class="btn-edit" onclick="editar(${index})">Editar</button>
+                    <button class="btn-delete" onclick="excluir(${index})">Excluir</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+// CADASTRAR OU EDITAR
+document.getElementById("formCadastro").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const usuario = {
+        nome: nome.value,
+        email: email.value,
+        cpf: cpf.value,
+        telefone: telefone.value,
+        categoria: categoria.value
+    };
+
+    if (editIndex === null) {
+        usuarios.push(usuario);
+    } else {
+        usuarios[editIndex] = usuario;
+        editIndex = null;
+    }
+
+    salvarLocal();
+    renderizar(usuarios);
+    this.reset();
+});
+
+// EDITAR
+function editar(index) {
+    const user = usuarios[index];
+
+    nome.value = user.nome;
+    email.value = user.email;
+    cpf.value = user.cpf;
+    telefone.value = user.telefone;
+    categoria.value = user.categoria;
+
+    editIndex = index;
+}
+
+// EXCLUIR
+function excluir(index) {
+    if (confirm("Deseja excluir este usuário?")) {
+        usuarios.splice(index, 1);
+        salvarLocal();
+        renderizar(usuarios);
+    }
+}
+
+// BUSCA
+function filtrar() {
+    const nomeBusca = buscaNome.value.toLowerCase();
+    const cpfBusca = buscaCpf.value;
+
+    const filtrados = usuarios.filter(u =>
+        u.nome.toLowerCase().includes(nomeBusca) &&
+        u.cpf.includes(cpfBusca)
+    );
+
+    renderizar(filtrados);
+}
+
+buscaNome.addEventListener("input", filtrar);
+buscaCpf.addEventListener("input", filtrar);
+
+// INICIAL
+renderizar(usuarios);
+</script>
+
+</body>
+</html>
