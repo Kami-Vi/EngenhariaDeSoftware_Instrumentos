@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Fornecedores</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo-area">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <div class="titulo-header">Fornecedores</div>
+    <a id="voltar" href="/">Voltar ao início</a>
+</div>
+
+<div class="container">
+
+<!-- LEFT -->
+<div class="left card">
+    <h3>Novo Fornecedor</h3>
+
+    <input id="empresa" placeholder="Nome da empresa">
+    <input id="cnpj" placeholder="CNPJ">
+    <input id="cep" placeholder="CEP">
+    <input id="complemento" placeholder="Complemento">
+
+    <button class="btn-green" onclick="salvarFornecedor()">Salvar</button>
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+
+    <!-- FILTRO -->
+    <div class="card filtros">
+        <input id="busca" placeholder="Buscar..." onkeyup="filtrar()">
+    </div>
+
+    <!-- TABELA -->
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>CNPJ</th>
+                    <th>CEP</th>
+                    <th>Complemento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+<script>
+
+let fornecedores = [];
+
+// ================= CARREGAR =================
+function carregarFornecedores() {
+    fetch("api.php")
+    .then(r => r.json())
+    .then(data => {
+
+        fornecedores = data.map(f => ({
+            id: f.idFornecedor,
+            empresa: f.NomeEmpresa,
+            cnpj: f.CNPJ,
+            cep: f.CEP,
+            complemento: f.Complemento
+        }));
+
+        render(fornecedores);
+    });
+}
+
+// ================= RENDER =================
+function render(lista) {
+    let tabela = document.getElementById("tabela");
+    tabela.innerHTML = "";
+
+    if(lista.length === 0){
+        tabela.innerHTML = `<tr><td colspan="5">Nenhum fornecedor encontrado</td></tr>`;
+        return;
+    }
+
+    lista.forEach(f => {
+        tabela.innerHTML += `
+        <tr>
+        <td>${f.empresa}</td>
+        <td>${f.cnpj}</td>
+        <td>${f.cep}</td>
+        <td>${f.complemento}</td>
+        <td>
+            <button onclick="excluir(${f.id})">X</button>
+        </td>
+        </tr>`;
+    });
+}
+
+// ================= SALVAR =================
+function salvarFornecedor() {
+
+    let fornecedor = {
+        empresa: empresa.value,
+        cnpj: cnpj.value,
+        cep: cep.value,
+        complemento: complemento.value
+    };
+
+    fetch("api.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(fornecedor)
+    })
+    .then(() => {
+        limpar();
+        carregarFornecedores();
+    });
+}
+
+// ================= EXCLUIR =================
+function excluir(id) {
+
+    if (!confirm("Excluir fornecedor?")) return;
+
+    fetch("api.php?id=" + id, {
+        method: "DELETE"
+    })
+    .then(() => carregarFornecedores());
+}
+
+// ================= FILTRO =================
+function filtrar() {
+
+    let termo = document.getElementById("busca").value.toLowerCase();
+
+    let filtrado = fornecedores.filter(f =>
+        f.empresa.toLowerCase().includes(termo) ||
+        f.cnpj.toLowerCase().includes(termo)
+    );
+
+    render(filtrado);
+}
+
+// ================= LIMPAR =================
+function limpar() {
+    empresa.value = "";
+    cnpj.value = "";
+    cep.value = "";
+    complemento.value = "";
+}
+
+// ================= INIT =================
+carregarFornecedores();
+
+</script>
+
+</body>
+</html>
