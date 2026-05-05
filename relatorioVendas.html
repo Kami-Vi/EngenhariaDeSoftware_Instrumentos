@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de vendas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="logo-area">
+        <img src="logo.png" alt="Logo">
+    </div>
+
+    <div class="titulo-header">Relatório de Vendas</div>
+
+    <div>
+        <a id="voltar" href="./index.html">Voltar</a>
+    </div>
+</div>
+
+<div class="container">
+
+<div class="right">
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat">
+            <h2>R$ 12.500</h2>
+            <small>Total Vendido</small>
+        </div>
+        <div class="stat">
+            <h2>320</h2>
+            <small>Produtos Vendidos</small>
+        </div>
+        <div class="stat">
+            <h2>Violão</h2>
+            <small>Mais Vendido</small>
+        </div>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="cardfiltros">
+        <input type="text" placeholder="Buscar produto...">
+        <input type="date">
+        <select>
+            <option>Categoria</option>
+            <option>Instrumento</option>
+            <option>Acessório</option>
+        </select>
+        <button class="btn-green">Filtrar</button>
+    </div>
+
+    <!-- TABELA -->
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Marca</th>
+                    <th>Quantidade</th>
+                    <th>Valor Unitário</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Violão</td>
+                    <td>Yamaha</td>
+                    <td>10</td>
+                    <td>R$ 500</td>
+                    <td>R$ 5.000</td>
+                </tr>
+                <tr>
+                    <td>Cabo P10</td>
+                    <td>Fender</td>
+                    <td>20</td>
+                    <td>R$ 50</td>
+                    <td>R$ 1.000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
