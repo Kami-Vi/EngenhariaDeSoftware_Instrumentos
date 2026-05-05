@@ -8,7 +8,7 @@
 /* BODY */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
+    background-color: #e9e7e3;
 }
 
 
@@ -145,4 +145,23 @@ body {
 .aviso p {
     color: #555;
     line-height: 1.5;
+}
+
+.filtros {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* .filtros input[type="text"] {
+    flex: 1; /* só o campo de busca cresce */
+
+
+.filtros input[type="date"],
+.filtros select {
+    width: 180px;
+}
+
+.filtros button {
+    width: 120px;
 }
