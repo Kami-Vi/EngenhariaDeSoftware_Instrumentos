@@ -1,935 +1,216 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gestão de Produtos — Instrumentos</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>MúsicaPro</title>
+<link rel="stylesheet" href="style.css">
 
-  <style>
-    /* ==================== RESET & VARIÁVEIS ==================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:         #F7F5F0;
-      --surface:    #FFFFFF;
-      --surface2:   #F0EDE6;
-      --border:     #DDD9D0;
-      --border2:    #C8C3B8;
-      --text:       #1C1A16;
-      --text2:      #6B6860;
-      --text3:      #9B998F;
-      --accent:     #2D5A3D;
-      --accent-lt:  #E8F2EC;
-      --accent-dk:  #1A3E28;
-      --warn:       #8B3A1A;
-      --warn-lt:    #FAF0EB;
-      --info:       #1A3A6E;
-      --info-lt:    #EBF0FA;
-      --radius:     10px;
-      --radius-lg:  16px;
-      --shadow:     0 1px 4px rgba(0,0,0,0.06);
-      --shadow-lg:  0 4px 24px rgba(0,0,0,0.10);
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 15px;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
-
-    /* ==================== HEADER ==================== */
-    header {
-      background: var(--accent-dk);
-      color: #fff;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-    }
-
-    header .logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
-      letter-spacing: -0.02em;
-      color: #fff;
-      white-space: nowrap;
-    }
-
-    header .logo span {
-      color: #8FC9A4;
-    }
-
-    header .subtitle {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-left: 1px solid rgba(255,255,255,0.15);
-      padding-left: 1.5rem;
-      margin-left: auto;
-    }
-
-    /* ==================== LAYOUT ==================== */
-    .app {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    @media (max-width: 900px) {
-      .app { grid-template-columns: 1fr; }
-    }
-
-    /* ==================== PAINEL FORMULÁRIO ==================== */
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: sticky;
-      top: 80px;
-    }
-
-    .panel-header {
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .panel-header h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--text);
-    }
-
-    .panel-header .mode-badge {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    .mode-badge.create { background: var(--accent-lt); color: var(--accent-dk); }
-    .mode-badge.edit   { background: var(--info-lt);   color: var(--info); }
-
-    /* ==================== FORMULÁRIO ==================== */
-    .form-body {
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .field { display: flex; flex-direction: column; gap: 4px; }
-
-    label {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text2);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    label .req { color: var(--warn); }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="email"],
-    input[type="tel"],
-    select,
-    textarea {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      color: var(--text);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 8px 12px;
-      width: 100%;
-      transition: border-color 0.15s, box-shadow 0.15s;
-      appearance: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(45,90,61,0.12);
-      background: #fff;
-    }
-
-    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6860' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; cursor: pointer; }
-
-    textarea { resize: vertical; min-height: 72px; }
-
-    .field-error { font-size: 12px; color: var(--warn); display: none; }
-    .field.invalid input, .field.invalid select, .field.invalid textarea { border-color: #C0392B; }
-    .field.invalid .field-error { display: block; }
-
-    .form-actions {
-      display: flex;
-      gap: 8px;
-      padding: 1rem 1.25rem;
-      border-top: 1px solid var(--border);
-      background: var(--surface2);
-    }
-
-    /* ==================== BOTÕES ==================== */
-    .btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      padding: 8px 18px;
-      border-radius: var(--radius);
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all 0.15s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent-dk);
-    }
-    .btn-primary:hover { background: var(--accent-dk); }
-
-    .btn-secondary {
-      background: #fff;
-      color: var(--text2);
-      border-color: var(--border2);
-    }
-    .btn-secondary:hover { background: var(--surface2); color: var(--text); }
-
-    .btn-danger {
-      background: var(--warn-lt);
-      color: var(--warn);
-      border-color: #E0C0B0;
-    }
-    .btn-danger:hover { background: #F5D8CC; }
-
-    .btn-icon {
-      padding: 6px 10px;
-      font-size: 14px;
-      border-radius: 8px;
-    }
-
-    /* ==================== ÁREA DE LISTAGEM ==================== */
-    .list-area { display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .stat-card .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: var(--accent);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat-card .stat-lbl {
-      font-size: 11px;
-      color: var(--text3);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: 4px;
-      display: block;
-    }
-
-    /* ==================== FILTROS ==================== */
-    .filters-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
-      box-shadow: var(--shadow);
-    }
-
-    .filters-label {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text3);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .filters-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr auto;
-      gap: 8px;
-      align-items: end;
-    }
-
-    @media (max-width: 680px) {
-      .filters-row { grid-template-columns: 1fr 1fr; }
-      .stats-row   { grid-template-columns: 1fr 1fr; }
-    }
-
-    .filter-input {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      color: var(--text);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 7px 11px;
-      width: 100%;
-      transition: border-color 0.15s;
-    }
-    .filter-input:focus { outline: none; border-color: var(--accent); background: #fff; }
-
-    /* ==================== TABELA ==================== */
-    .table-wrap {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13.5px;
-      min-width: 720px;
-    }
-
-    thead {
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-    }
-
-    thead th {
-      padding: 10px 14px;
-      text-align: left;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text2);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.1s;
-    }
-
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: var(--surface2); }
-
-    td {
-      padding: 10px 14px;
-      vertical-align: middle;
-      color: var(--text);
-    }
-
-    .td-name { font-weight: 500; }
-    .td-spec { color: var(--text2); font-size: 12px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-    .badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 9px;
-      border-radius: 20px;
-      letter-spacing: 0.04em;
-    }
-
-    .badge-instrumento { background: var(--accent-lt); color: var(--accent-dk); }
-    .badge-acessorio   { background: var(--info-lt);   color: var(--info); }
-
-    .td-actions { display: flex; gap: 6px; justify-content: flex-end; }
-
-    /* ==================== EMPTY STATE ==================== */
-    .empty-state {
-      padding: 3rem 2rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .empty-icon {
-      font-size: 2.5rem;
-      opacity: 0.25;
-    }
-
-    .empty-state p { color: var(--text3); font-size: 14px; }
-
-    /* ==================== MODAL CONFIRMAÇÃO ==================== */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(28,26,22,0.5);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      backdrop-filter: blur(2px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
-
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      width: 100%;
-      max-width: 400px;
-      overflow: hidden;
-      transform: translateY(8px);
-      transition: transform 0.2s;
-    }
-
-    .modal-overlay.open .modal { transform: translateY(0); }
-
-    .modal-header {
-      background: var(--warn-lt);
-      border-bottom: 1px solid #E0C0B0;
-      padding: 1rem 1.25rem;
-    }
-
-    .modal-header h3 {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: var(--warn);
-    }
-
-    .modal-body { padding: 1.25rem; color: var(--text2); font-size: 14px; }
-    .modal-body strong { color: var(--text); }
-
-    .modal-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      padding: 1rem 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ==================== TOAST ==================== */
-    .toast {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background: var(--text);
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: var(--radius);
-      font-size: 13px;
-      font-weight: 500;
-      box-shadow: var(--shadow-lg);
-      z-index: 300;
-      transform: translateY(12px);
-      opacity: 0;
-      transition: all 0.25s;
-      pointer-events: none;
-    }
-
-    .toast.show { transform: translateY(0); opacity: 1; }
-    .toast.success { background: var(--accent); }
-    .toast.danger  { background: var(--warn); }
-
-    /* ==================== RESPONSIVO EXTRA ==================== */
-    @media (max-width: 600px) {
-      .app { padding: 1rem; gap: 1.25rem; }
-      header .subtitle { display: none; }
-    }
-  </style>
 </head>
+
 <body>
 
-<!-- CABEÇALHO -->
-<header>
-  <div class="logo">Música<span>Pro</span></div>
-  <span class="subtitle">Sistema de Gestão de Produtos</span>
-</header>
-
-<!-- APLICAÇÃO PRINCIPAL -->
-<div class="app">
-
-  <!-- ========== PAINEL ESQUERDO — FORMULÁRIO ========== -->
-  <aside class="panel">
-    <div class="panel-header">
-      <h2 id="form-title">Novo Produto</h2>
-      <span class="mode-badge create" id="mode-badge">Cadastro</span>
+<div class="header">
+    <div class="logo-area">
+        <img src="logo.png" alt="Logo">
     </div>
-
-    <div class="form-body" id="product-form">
-
-      <div class="field" id="f-nome">
-        <label>Nome do Produto <span class="req">*</span></label>
-        <input type="text" id="nome" placeholder="Ex: Violão Clássico Series 200" maxlength="80" />
-        <span class="field-error">Campo obrigatório</span>
-      </div>
-
-      <div class="field" id="f-marca">
-        <label>Marca <span class="req">*</span></label>
-        <input type="text" id="marca" placeholder="Ex: Yamaha" maxlength="60" />
-        <span class="field-error">Campo obrigatório</span>
-      </div>
-
-      <div class="field" id="f-categoria">
-        <label>Categoria <span class="req">*</span></label>
-        <select id="categoria">
-          <option value="">Selecione...</option>
-          <option value="Instrumento">Instrumento</option>
-          <option value="Acessório">Acessório</option>
-        </select>
-        <span class="field-error">Selecione uma categoria</span>
-      </div>
-
-      <div class="field" id="f-tipo">
-        <label>Tipo do Produto <span class="req">*</span></label>
-        <input type="text" id="tipo" placeholder="Ex: Violão, Guitarra, Pedal..." maxlength="60" />
-        <span class="field-error">Campo obrigatório</span>
-      </div>
-
-      <div class="field" id="f-especificacoes">
-        <label>Especificações</label>
-        <textarea id="especificacoes" placeholder="Descreva materiais, dimensões, características..."></textarea>
-      </div>
-
-      <div class="field" id="f-fornecedor">
-        <label>Fornecedor <span class="req">*</span></label>
-        <input type="text" id="fornecedor" placeholder="Nome da empresa fornecedora" maxlength="80" />
-        <span class="field-error">Campo obrigatório</span>
-      </div>
-
-      <div class="field" id="f-garantia">
-        <label>Tempo de Garantia</label>
-        <input type="text" id="garantia" placeholder="Ex: 12 meses, 2 anos..." maxlength="40" />
-      </div>
-
-      <div class="field" id="f-contato">
-        <label>Contato do Fornecedor</label>
-        <input type="text" id="contato" placeholder="E-mail, telefone ou site" maxlength="100" />
-      </div>
-
-    </div>
-
-    <div class="form-actions">
-      <button class="btn btn-primary" onclick="salvarProduto()">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-        <span id="btn-label">Salvar Produto</span>
-      </button>
-      <button class="btn btn-secondary" onclick="cancelarEdicao()" id="btn-cancelar" style="display:none">
-        Cancelar
-      </button>
-    </div>
-  </aside>
-
-  <!-- ========== ÁREA DIREITA — LISTAGEM ========== -->
-  <main class="list-area">
-
-    <!-- Estatísticas rápidas -->
-    <div class="stats-row">
-      <div class="stat-card">
-        <span class="stat-num" id="stat-total">0</span>
-        <span class="stat-lbl">Total</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num" id="stat-instrumentos">0</span>
-        <span class="stat-lbl">Instrumentos</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num" id="stat-acessorios">0</span>
-        <span class="stat-lbl">Acessórios</span>
-      </div>
-    </div>
-
-    <!-- Filtros -->
-    <div class="filters-box">
-      <div class="filters-label">Filtrar produtos</div>
-      <div class="filters-row">
-        <div>
-          <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em">Nome</label>
-          <input class="filter-input" id="f-busca-nome" type="text" placeholder="Buscar por nome..." oninput="filtrar()" />
-        </div>
-        <div>
-          <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em">Marca</label>
-          <input class="filter-input" id="f-busca-marca" type="text" placeholder="Buscar por marca..." oninput="filtrar()" />
-        </div>
-        <div>
-          <label style="font-size:11px;color:var(--text3);margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em">Categoria</label>
-          <select class="filter-input" id="f-busca-cat" onchange="filtrar()">
-            <option value="">Todas</option>
-            <option value="Instrumento">Instrumento</option>
-            <option value="Acessório">Acessório</option>
-          </select>
-        </div>
-        <button class="btn btn-secondary" onclick="limparFiltros()">Limpar</button>
-      </div>
-    </div>
-
-    <!-- Tabela de produtos -->
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Marca</th>
-            <th>Categoria</th>
-            <th>Tipo</th>
-            <th>Fornecedor</th>
-            <th>Garantia</th>
-            <th style="text-align:right">Ações</th>
-          </tr>
-        </thead>
-        <tbody id="tabela-body">
-          <!-- Linhas injetadas por JS -->
-        </tbody>
-      </table>
-
-      <div class="empty-state" id="empty-state" style="display:none">
-        <div class="empty-icon">🎸</div>
-        <strong>Nenhum produto encontrado</strong>
-        <p>Cadastre um produto no painel ao lado ou ajuste os filtros de busca.</p>
-      </div>
-    </div>
-
-  </main>
+    <div class="titulo-header">Cadastro de Produtos</div>
+    <a id="voltar" href="./index.html">Voltar ao início</a>
 </div>
 
-<!-- MODAL DE CONFIRMAÇÃO DE EXCLUSÃO -->
-<div class="modal-overlay" id="modal-excluir">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Confirmar Exclusão</h3>
-    </div>
-    <div class="modal-body">
-      Deseja realmente excluir o produto <strong id="modal-nome-produto">—</strong>? Esta ação não pode ser desfeita.
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
-      <button class="btn btn-danger" onclick="confirmarExclusao()">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-        Excluir
-      </button>
-    </div>
-  </div>
+<div class="container">
+
+<!-- LEFT -->
+<div class="left card">
+    <h3>Novo Produto</h3>
+
+    <input id="nome" placeholder="Nome do produto">
+    <input id="marca" placeholder="Marca">
+
+    <select id="categoria">
+        <option value="">Categoria</option>
+        <option value="Instrumento">Instrumento</option>
+        <option value="Acessório">Acessório</option>
+    </select>
+
+    <input id="tipo" placeholder="Tipo">
+    <textarea id="especificacoes" placeholder="Especificações"></textarea>
+
+    <input id="fornecedor" placeholder="Fornecedor">
+    <input id="garantia" placeholder="Garantia">
+    <input id="contato" placeholder="Contato">
+
+    <button class="btn-green" onclick="salvarProduto()">Salvar Produto</button>
 </div>
 
-<!-- TOAST DE NOTIFICAÇÃO -->
-<div class="toast" id="toast"></div>
+<!-- RIGHT -->
+<div class="right">
+
+    <!-- STATS -->
+    <div class="stats">
+        <div class="stat">
+            <h2 id="total">0</h2>
+            <small>Total</small>
+        </div>
+        <div class="stat">
+            <h2 id="instrumentos">0</h2>
+            <small>Instrumentos</small>
+        </div>
+        <div class="stat">
+            <h2 id="acessorios">0</h2>
+            <small>Acessórios</small>
+        </div>
+    </div>
+
+    <!-- FILTRO -->
+    <div class="card filtros">
+        <input id="busca" placeholder="Buscar..." onkeyup="filtrar()">
+    </div>
+
+    <!-- TABELA -->
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th>Fornecedor</th>
+                    <th>Garantia</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+        </table>
+    </div>
+
+</div>
+</div>
 
 <script>
-  /* ================================================
-     ESTADO DA APLICAÇÃO
-  ================================================ */
-  let produtos = JSON.parse(localStorage.getItem('musicapro_produtos') || '[]');
-  let modoEdicao = false;
-  let idEdicao = null;
-  let idParaExcluir = null;
 
-  /* ================================================
-     PERSISTÊNCIA
-  ================================================ */
-  function salvarStorage() {
-    localStorage.setItem('musicapro_produtos', JSON.stringify(produtos));
-  }
+let produtos = [];
 
-  /* ================================================
-     UTILITÁRIOS
-  ================================================ */
-  function gerarId() {
-    return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-  }
+// ================= CARREGAR =================
+function carregarProdutos() {
+    fetch("api.php")
+    .then(r => r.json())
+    .then(data => {
 
-  function getVal(id) {
-    return document.getElementById(id).value.trim();
-  }
+        produtos = data.map(p => ({
+            id: p.idProdutos,
+            nome: p.Tipo || "Produto",
+            marca: p.Marca,
+            categoria: p.Categoria,
+            tipo: p.Tipo,
+            especificacoes: p.Especificacoes,
+            fornecedor: p.NomeEmpresa,
+            garantia: p.Garantia
+        }));
 
-  function setVal(id, val) {
-    document.getElementById(id).value = val || '';
-  }
-
-  function mostrarToast(msg, tipo = 'success') {
-    const el = document.getElementById('toast');
-    el.textContent = msg;
-    el.className = 'toast ' + tipo;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 2800);
-  }
-
-  /* ================================================
-     VALIDAÇÃO
-  ================================================ */
-  const camposObrigatorios = ['nome', 'marca', 'categoria', 'tipo', 'fornecedor'];
-
-  function validarFormulario() {
-    let valido = true;
-    camposObrigatorios.forEach(id => {
-      const field = document.getElementById('f-' + id);
-      const input = document.getElementById(id);
-      if (!input.value.trim()) {
-        field.classList.add('invalid');
-        valido = false;
-      } else {
-        field.classList.remove('invalid');
-      }
+        atualizarStats();
+        render(produtos);
     });
-    return valido;
-  }
+}
 
-  // Remove destaque de erro ao digitar
-  camposObrigatorios.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', () => {
-      document.getElementById('f-' + id)?.classList.remove('invalid');
-    });
-  });
+// ================= STATS =================
+function atualizarStats(){
+    total.innerText = produtos.length;
 
-  /* ================================================
-     SALVAR (CRIAR / ATUALIZAR)
-  ================================================ */
-  function salvarProduto() {
-    if (!validarFormulario()) {
-      mostrarToast('Preencha os campos obrigatórios.', 'danger');
-      return;
+    instrumentos.innerText = produtos.filter(p => p.categoria === "Instrumento").length;
+    acessorios.innerText = produtos.filter(p => p.categoria === "Acessório").length;
+}
+
+// ================= RENDER =================
+function render(lista) {
+    tabela.innerHTML = "";
+
+    if(lista.length === 0){
+        tabela.innerHTML = `<tr><td colspan="7">Nenhum produto encontrado</td></tr>`;
+        return;
     }
 
-    const produto = {
-      id: modoEdicao ? idEdicao : gerarId(),
-      nome: getVal('nome'),
-      marca: getVal('marca'),
-      categoria: getVal('categoria'),
-      tipo: getVal('tipo'),
-      especificacoes: getVal('especificacoes'),
-      fornecedor: getVal('fornecedor'),
-      garantia: getVal('garantia'),
-      contato: getVal('contato'),
-      criadoEm: modoEdicao ? (produtos.find(p => p.id === idEdicao)?.criadoEm || Date.now()) : Date.now(),
+    lista.forEach(p => {
+        tabela.innerHTML += `
+        <tr>
+        <td>${p.nome}</td>
+        <td>${p.marca}</td>
+        <td>${p.categoria}</td>
+        <td>${p.tipo}</td>
+        <td>${p.fornecedor}</td>
+        <td>${p.garantia || "-"}</td>
+        <td>
+            <button onclick="excluir(${p.id})">X</button>
+        </td>
+        </tr>`;
+    });
+}
+
+// ================= SALVAR =================
+function salvarProduto() {
+
+    let produto = {
+        nome: nome.value,
+        marca: marca.value,
+        categoria: categoria.value,
+        tipo: tipo.value,
+        especificacoes: especificacoes.value,
+        fornecedor: fornecedor.value,
+        garantia: garantia.value,
+        contato: contato.value
     };
 
-    if (modoEdicao) {
-      const idx = produtos.findIndex(p => p.id === idEdicao);
-      produtos[idx] = produto;
-      mostrarToast('Produto atualizado com sucesso!', 'success');
-    } else {
-      produtos.unshift(produto);
-      mostrarToast('Produto cadastrado com sucesso!', 'success');
-    }
-
-    salvarStorage();
-    limparFormulario();
-    renderizar();
-  }
-
-  /* ================================================
-     EDITAR
-  ================================================ */
-  function editarProduto(id) {
-    const p = produtos.find(x => x.id === id);
-    if (!p) return;
-
-    modoEdicao = true;
-    idEdicao = id;
-
-    setVal('nome',           p.nome);
-    setVal('marca',          p.marca);
-    setVal('categoria',      p.categoria);
-    setVal('tipo',           p.tipo);
-    setVal('especificacoes', p.especificacoes);
-    setVal('fornecedor',     p.fornecedor);
-    setVal('garantia',       p.garantia);
-    setVal('contato',        p.contato);
-
-    document.getElementById('form-title').textContent = 'Editar Produto';
-    document.getElementById('mode-badge').textContent = 'Edição';
-    document.getElementById('mode-badge').className = 'mode-badge edit';
-    document.getElementById('btn-label').textContent = 'Atualizar';
-    document.getElementById('btn-cancelar').style.display = 'inline-flex';
-
-    // Scroll ao topo do painel em mobile
-    document.querySelector('.panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function cancelarEdicao() {
-    modoEdicao = false;
-    idEdicao = null;
-    limparFormulario();
-  }
-
-  function limparFormulario() {
-    ['nome','marca','categoria','tipo','especificacoes','fornecedor','garantia','contato'].forEach(id => setVal(id, ''));
-    camposObrigatorios.forEach(id => document.getElementById('f-' + id)?.classList.remove('invalid'));
-
-    modoEdicao = false;
-    idEdicao = null;
-    document.getElementById('form-title').textContent = 'Novo Produto';
-    document.getElementById('mode-badge').textContent = 'Cadastro';
-    document.getElementById('mode-badge').className = 'mode-badge create';
-    document.getElementById('btn-label').textContent = 'Salvar Produto';
-    document.getElementById('btn-cancelar').style.display = 'none';
-  }
-
-  /* ================================================
-     EXCLUIR
-  ================================================ */
-  function excluirProduto(id) {
-    const p = produtos.find(x => x.id === id);
-    if (!p) return;
-    idParaExcluir = id;
-    document.getElementById('modal-nome-produto').textContent = p.nome;
-    document.getElementById('modal-excluir').classList.add('open');
-  }
-
-  function confirmarExclusao() {
-    produtos = produtos.filter(p => p.id !== idParaExcluir);
-    salvarStorage();
-    fecharModal();
-    if (modoEdicao && idEdicao === idParaExcluir) limparFormulario();
-    renderizar();
-    mostrarToast('Produto excluído.', 'danger');
-  }
-
-  function fecharModal() {
-    document.getElementById('modal-excluir').classList.remove('open');
-    idParaExcluir = null;
-  }
-
-  // Fecha modal ao clicar fora
-  document.getElementById('modal-excluir').addEventListener('click', function(e) {
-    if (e.target === this) fecharModal();
-  });
-
-  /* ================================================
-     FILTRO EM TEMPO REAL
-  ================================================ */
-  function filtrar() {
-    const nome  = document.getElementById('f-busca-nome').value.trim().toLowerCase();
-    const marca = document.getElementById('f-busca-marca').value.trim().toLowerCase();
-    const cat   = document.getElementById('f-busca-cat').value;
-
-    const resultado = produtos.filter(p => {
-      const okNome  = !nome  || p.nome.toLowerCase().includes(nome);
-      const okMarca = !marca || p.marca.toLowerCase().includes(marca);
-      const okCat   = !cat   || p.categoria === cat;
-      return okNome && okMarca && okCat;
+    fetch("api.php", {
+        method: "POST",
+        body: JSON.stringify(produto)
+    })
+    .then(() => {
+        limpar();
+        carregarProdutos();
     });
+}
 
-    renderizarTabela(resultado);
-  }
+// ================= EXCLUIR =================
+function excluir(id) {
 
-  function limparFiltros() {
-    document.getElementById('f-busca-nome').value  = '';
-    document.getElementById('f-busca-marca').value = '';
-    document.getElementById('f-busca-cat').value   = '';
-    renderizarTabela(produtos);
-  }
+    if (!confirm("Excluir?")) return;
 
-  /* ================================================
-     RENDERIZAÇÃO
-  ================================================ */
-  function renderizar() {
-    // Estatísticas gerais (sempre sobre todos os produtos)
-    document.getElementById('stat-total').textContent        = produtos.length;
-    document.getElementById('stat-instrumentos').textContent = produtos.filter(p => p.categoria === 'Instrumento').length;
-    document.getElementById('stat-acessorios').textContent   = produtos.filter(p => p.categoria === 'Acessório').length;
+    fetch("api.php?id=" + id, {
+        method: "DELETE"
+    })
+    .then(() => carregarProdutos());
+}
 
-    // Tabela respeitando filtros ativos
-    filtrar();
-  }
+// ================= FILTRO =================
+function filtrar() {
 
-  function renderizarTabela(lista) {
-    const tbody = document.getElementById('tabela-body');
-    const empty = document.getElementById('empty-state');
+    let termo = busca.value.toLowerCase();
 
-    if (lista.length === 0) {
-      tbody.innerHTML = '';
-      empty.style.display = 'flex';
-      return;
-    }
+    let filtrado = produtos.filter(p =>
+        p.nome.toLowerCase().includes(termo) ||
+        p.marca.toLowerCase().includes(termo) ||
+        p.categoria.toLowerCase().includes(termo)
+    );
 
-    empty.style.display = 'none';
+    render(filtrado);
+}
 
-    tbody.innerHTML = lista.map(p => `
-      <tr>
-        <td class="td-name">${esc(p.nome)}</td>
-        <td>${esc(p.marca)}</td>
-        <td>
-          <span class="badge badge-${p.categoria === 'Instrumento' ? 'instrumento' : 'acessorio'}">
-            ${esc(p.categoria)}
-          </span>
-        </td>
-        <td>${esc(p.tipo)}</td>
-        <td>
-          ${esc(p.fornecedor)}
-          ${p.contato ? `<div class="td-spec">${esc(p.contato)}</div>` : ''}
-        </td>
-        <td>${p.garantia ? esc(p.garantia) : '<span style="color:var(--text3)">—</span>'}</td>
-        <td>
-          <div class="td-actions">
-            <button class="btn btn-secondary btn-icon" title="Editar" onclick="editarProduto('${p.id}')">
-              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            </button>
-            <button class="btn btn-danger btn-icon" title="Excluir" onclick="excluirProduto('${p.id}')">
-              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
-            </button>
-          </div>
-        </td>
-      </tr>
-    `).join('');
-  }
+// ================= LIMPAR =================
+function limpar() {
+    nome.value = "";
+    marca.value = "";
+    categoria.value = "";
+    tipo.value = "";
+    especificacoes.value = "";
+    fornecedor.value = "";
+    garantia.value = "";
+    contato.value = "";
+}
 
-  // Escapa HTML para evitar XSS
-  function esc(str) {
-    return String(str || '')
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;');
-  }
+// ================= INIT =================
+carregarProdutos();
 
-  /* ================================================
-     INICIALIZAÇÃO
-  ================================================ */
-  renderizar();
 </script>
+
 </body>
 </html>
