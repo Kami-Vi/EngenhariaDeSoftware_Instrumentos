@@ -6,7 +6,7 @@ body {
     background:#e9e7e3;
 }
 
-/* HEADER */
+
 .header {
     background:rgb(75,0,0);
     color:white;
@@ -18,15 +18,15 @@ body {
 
 #voltar {
     color: white;
-    text-decoration: none; /* opcional: tira o sublinhado */
+    text-decoration: none; 
 }
 
-/* LOGO */
+
 .logo-area img {
     height:80px;
 }
 
-/* TITULO DIREITA */
+
 .titulo-header {
     font-size:20px;
     font-weight:bold;
@@ -34,14 +34,14 @@ body {
     text-align:center;
 }
 
-/* GRID */
+
 .container {
     display:flex;
     padding:20px;
     gap:20px;
 }
 
-/* CARD */
+
 .card {
     background:white;
     border-radius:10px;
@@ -49,17 +49,17 @@ body {
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* LEFT */
+
 .left {
     width:300px;
 }
 
-/* RIGHT */
+
 .right {
     flex:1;
 }
 
-/* INPUTS */
+
 input, select, textarea {
     width:100%;
     padding:8px;
@@ -68,7 +68,7 @@ input, select, textarea {
     border:1px solid #ccc;
 }
 
-/* BUTTON */
+
 button {
     padding:10px;
     border:none;
@@ -81,7 +81,7 @@ button {
     color:white;
 }
 
-/* STATS */
+
 .stats {
     display:flex;
     gap:10px;
@@ -96,7 +96,7 @@ button {
     background:#f4f4f4;
 }
 
-/* TABLE */
+
 table {
     width:100%;
     border-collapse:collapse;
@@ -112,7 +112,7 @@ th {
     background:#f0f0f0;
 }
 
-/* FILTER */
+
 .filtros {
     display:flex;
     gap:10px;
