@@ -122,3 +122,25 @@ th {
 .filtros input {
     flex:1;
 }
+
+#carrinho {
+    border-collapse: collapse;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+
+#carrinho th {
+    background-color: rgb(117, 0, 0);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+
+#carrinho td,
+#carrinho th {
+    font-size: 14px;
+}
