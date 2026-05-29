@@ -25,19 +25,10 @@
         <form action="salvar_venda.php" method="POST">
 
             <label>Cliente:</label>
-            <select id="cliente">
-                <option value="">Selecione</option>
-                <option value="1">João Silva</option>
-                <option value="2">Maria Oliveira</option>
-            </select>
+            <select id="cliente"> <option value="">Selecione o cliente</option> </select>
 
             <label>Produto:</label>
-            <select id="produto">
-                <option value="">Selecione</option>
-                <option value="1" data-preco="3500">Notebook</option>
-                <option value="2" data-preco="50">Mouse</option>
-                <option value="3" data-preco="120">Teclado</option>
-            </select>
+            <select id="produto"> <option value="">Selecione o produto</option> </select>
 
             <label>Quantidade:</label>
             <input type="number" id="quantidade" min="1">
@@ -56,6 +47,15 @@
 
             <h3 id="total">Total: R$ 0,00</h3>
 
+            <label>Forma de Pagamento:</label>
+            <select id="categoria">
+                <option value="">selecione</option>
+                <option value="Credito">Credito</option>
+                <option value="Debito">Debito</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Pix">Pix</option>
+            </select>
+
             <label>Data:</label>
             <input type="date" name="data" required>
 
@@ -69,24 +69,38 @@
 
         <h3>Vendas Realizadas</h3>
 
-        <div class="filtros">
-            <input placeholder="Buscar produto">
-            <input type="date">
-        </div>
+        
+    <div class="filtros">
+        <input
+            id="buscarProduto"
+            placeholder="Buscar produto"
+            onkeyup="filtrarVendas()"
+        >
+        <input
+            id="buscarData"
+            type="date"
+            onchange="filtrarVendas()"
+        >
+    </div>
+
+
 
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Cliente</th>
                     <th>Produto</th>
                     <th>Quantidade</th>
                     <th>Data</th>
+                    <th>Forma de Pagamento</th>
                     <th>Ações</th>
+                    
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
+            <tbody id="tabela-vendas">
+                <!-- <tr>
                     <td>1</td>
                     <td>Notebook</td>
                     <td>2</td>
@@ -95,7 +109,7 @@
                         <button>Editar</button>
                         <button>Excluir</button>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
 
