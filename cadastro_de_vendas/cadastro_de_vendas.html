@@ -3,29 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>MúsicaPro</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
-
 <div class="header">
     <div class="logo-area">
-        <img src="logo.png" alt="Logo">
+        <img src="/logo.png" alt="Logo">
     </div>
     <div class="titulo-header">Cadastro de Vendas</div>
-    <a id="voltar" href="./index.html">Voltar ao início</a>
+    <a id="voltar" href="/index.html">Voltar ao início</a>
 </div>
 
 <div class="container">
 
-  
     <div class="left card">
 
         <h3>Nova venda</h3>
 
         <form action="salvar_venda.php" method="POST">
 
+            <label>Cliente:</label>
+            <select id="cliente">
+                <option value="">Selecione</option>
+                <option value="1">João Silva</option>
+                <option value="2">Maria Oliveira</option>
+            </select>
 
             <label>Produto:</label>
             <select id="produto">
@@ -38,12 +42,10 @@
             <label>Quantidade:</label>
             <input type="number" id="quantidade" min="1">
 
-            <!-- BOTÃO ADICIONAR -->
             <button type="button" onclick="adicionarItem()">Adicionar</button>
 
             <hr>
 
-            
             <table id="carrinho">
                 <tr>
                     <th>Produto</th>
@@ -52,10 +54,8 @@
                 </tr>
             </table>
 
-            <!-- TOTAL -->
             <h3 id="total">Total: R$ 0,00</h3>
 
-            <!-- DATA -->
             <label>Data:</label>
             <input type="date" name="data" required>
 
@@ -65,18 +65,15 @@
 
     </div>
 
-  
     <div class="right card">
 
         <h3>Vendas Realizadas</h3>
 
-        <!-- FILTRO -->
         <div class="filtros">
             <input placeholder="Buscar produto">
             <input type="date">
         </div>
 
-        <!-- TABELA -->
         <table>
             <thead>
                 <tr>
@@ -89,8 +86,6 @@
             </thead>
 
             <tbody>
-
-                <!-- EXEMPLO -->
                 <tr>
                     <td>1</td>
                     <td>Notebook</td>
@@ -101,7 +96,6 @@
                         <button>Excluir</button>
                     </td>
                 </tr>
-
             </tbody>
         </table>
 
@@ -110,52 +104,7 @@
 </div>
 
 </body>
-<script>
-function adicionarItem() {
 
-    let select = document.getElementById("produto");
-    let nome = select.options[select.selectedIndex].text;
-    let preco = select.options[select.selectedIndex].getAttribute("data-preco");
-    let id = select.value;
+<script src="vendas.js"></script>
 
-    let qtd = document.getElementById("quantidade").value;
-
-    if (id === "" || qtd <= 0) {
-        alert("Selecione um produto e quantidade");
-        return;
-    }
-
-    let subtotal = preco * qtd;
-
-    let tabela = document.getElementById("carrinho");
-
-    let linha = tabela.insertRow();
-
-    linha.insertCell(0).innerText = nome;
-    linha.insertCell(1).innerText = qtd;
-    linha.insertCell(2).innerText = "R$ " + subtotal.toFixed(2);
-
-    // enviar pro PHP
-    linha.insertCell(3).innerHTML = `
-        <input type="hidden" name="produto_id[]" value="${id}">
-        <input type="hidden" name="quantidade[]" value="${qtd}">
-    `;
-
-    atualizarTotal();
-
-    document.getElementById("quantidade").value = "";
-}
-
-function atualizarTotal() {
-    let tabela = document.getElementById("carrinho");
-    let total = 0;
-
-    for (let i = 1; i < tabela.rows.length; i++) {
-        let valor = tabela.rows[i].cells[2].innerText.replace("R$", "");
-        total += parseFloat(valor);
-    }
-
-    document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
-}
-</script>
 </html>

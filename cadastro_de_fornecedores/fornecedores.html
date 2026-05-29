@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Fornecedores</title>
+<link rel="stylesheet" href="fornecedores.css">
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo-area">
+        <img src="/logo.png" alt="Logo">
+    </div>
+    <div class="titulo-header">Fornecedores</div>
+    <a id="voltar" href="/index.html">Voltar ao início</a>
+</div>
+
+<div class="container">
+
+<!-- LEFT -->
+<div class="left card">
+    <h3>Novo Fornecedor</h3>
+
+    <input id="empresa" placeholder="Nome da empresa">
+    <input id="cnpj" placeholder="CNPJ">
+    <input id="cep" placeholder="CEP">
+    <input id="complemento" placeholder="Complemento">
+
+    <button class="btn-green" onclick="salvarFornecedor()">Salvar</button>
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+
+    <!-- FILTRO -->
+    <div class="card filtros">
+        <input id="busca" placeholder="Buscar..." onkeyup="filtrar()">
+    </div>
+
+    <!-- TABELA -->
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>CNPJ</th>
+                    <th>CEP</th>
+                    <th>Complemento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+
+<script src="fornecedores.js"></script>
+
+
+
+</body>
+</html>
