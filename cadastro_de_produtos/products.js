@@ -1,5 +1,7 @@
 const API_URL = "http://localhost:3000/produtos";
+const API_FORNECEDORES = "http://localhost:3000/fornecedores";
 
+let fornecedores = [];
 let produtos = [];
 let produtoEditandoId = null;
 
@@ -8,6 +10,7 @@ let produtoEditandoId = null;
 // ==========================
 document.addEventListener("DOMContentLoaded", () => {
     carregarProdutos();
+    carregarFornecedores();
 });
 
 // ==========================
@@ -21,6 +24,22 @@ async function carregarProdutos() {
     atualizarStats();
 }
 
+async function carregarFornecedores() {
+
+    const res = await fetch(API_FORNECEDORES);
+    fornecedores = await res.json();
+
+    const select = document.querySelector("#fornecedor");
+
+    fornecedores.forEach(fornecedor => {
+
+        select.innerHTML += `
+            <option value="${fornecedor.id}">
+                ${fornecedor.nome}
+            </option>
+        `;
+    });
+}
 // ==========================
 // RENDER TABELA
 // ==========================
@@ -37,7 +56,7 @@ function renderTabela(lista) {
                 <td>${produto.marca}</td>
                 <td>${produto.categoria}</td>
                 <td>${produto.tipo}</td>
-                <td>${produto.fornecedor}</td>
+                <td>${fornecedores.find(f => String(f.id) === String(produto.fornecedor))?.nome || ""}</td>
                 <td>${produto.garantia}</td>
 
                 <td>
