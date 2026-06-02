@@ -1,55 +1,60 @@
 const API_URL = "http://localhost:3000/avisos";
-const API_USUARIOS = "http://localhost:3000/usuarios";
+const API_PESSOAS = "http://localhost:3000/pessoas";
 
 let avisos = [];
-let usuarios = [];
+let pessoas = [];
 let avisoEditandoId = null;
 
+// ==========================
 // INICIALIZAÇÃO
-document.addEventListener("DOMContentLoaded", () => {
-    carregarAvisos();
-    carregarUsuarios();
+// ==========================
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarPessoas();
+    await carregarAvisos();
 });
 
-// CARREGAR USUÁRIOS
-async function carregarUsuarios() {
-
-    const res = await fetch(API_USUARIOS);
-    usuarios = await res.json();
+// ==========================
+// CARREGAR PESSOAS (FUNCIONÁRIOS)
+// ==========================
+async function carregarPessoas() {
+    const res = await fetch(API_PESSOAS);
+    pessoas = await res.json();
 
     const select = document.querySelector("#autorAviso");
 
     select.innerHTML = `<option value="">Selecione o funcionário</option>`;
 
-    usuarios.forEach(u => {
+    pessoas.forEach(p => {
         select.innerHTML += `
-            <option value="${u.id}">
-                ${u.nome}
+            <option value="${p.id}">
+                ${p.nome}
             </option>
         `;
     });
 }
 
+// ==========================
 // CARREGAR AVISOS
+// ==========================
 async function carregarAvisos() {
-
     const res = await fetch(API_URL);
     avisos = await res.json();
 
     renderAvisos();
 }
 
-// RENDER
+// ==========================
+// RENDER AVISOS
+// ==========================
 function renderAvisos() {
 
     const lista = document.querySelector("#listaAvisos");
-
     lista.innerHTML = "";
 
     avisos.forEach(aviso => {
 
-        const autor = usuarios.find(
-            u => String(u.id) === String(aviso.autor)
+        const autor = pessoas.find(
+            p => String(p.id) === String(aviso.autor)
         )?.nome || "Desconhecido";
 
         lista.innerHTML += `
@@ -75,7 +80,9 @@ function renderAvisos() {
     });
 }
 
-// SALVAR
+// ==========================
+// SALVAR AVISO
+// ==========================
 async function salvarAviso() {
 
     const aviso = {
@@ -113,10 +120,14 @@ async function salvarAviso() {
     carregarAvisos();
 }
 
+// ==========================
 // EDITAR
+// ==========================
 function editarAviso(id) {
 
     const aviso = avisos.find(a => String(a.id) === String(id));
+
+    if (!aviso) return;
 
     document.querySelector("#tituloAviso").value = aviso.titulo;
     document.querySelector("#mensagemAviso").value = aviso.mensagem;
@@ -125,7 +136,9 @@ function editarAviso(id) {
     avisoEditandoId = id;
 }
 
+// ==========================
 // EXCLUIR
+// ==========================
 async function excluirAviso(id) {
 
     await fetch(`${API_URL}/${id}`, {
@@ -135,15 +148,21 @@ async function excluirAviso(id) {
     carregarAvisos();
 }
 
-// LIMPAR
+// ==========================
+// LIMPAR FORMULÁRIO
+// ==========================
 function limparFormulario() {
 
     document.querySelector("#tituloAviso").value = "";
     document.querySelector("#mensagemAviso").value = "";
     document.querySelector("#autorAviso").value = "";
+
+    avisoEditandoId = null;
 }
 
-// GLOBAL
+// ==========================
+// GLOBAIS
+// ==========================
 window.salvarAviso = salvarAviso;
 window.editarAviso = editarAviso;
 window.excluirAviso = excluirAviso;
