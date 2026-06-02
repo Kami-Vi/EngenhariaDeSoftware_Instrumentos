@@ -174,3 +174,4 @@ window.salvarFornecedor = salvarFornecedor;
 window.editarFornecedor = editarFornecedor;
 window.excluirFornecedor = excluirFornecedor;
 window.filtrar = filtrar;
+}
