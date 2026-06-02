@@ -6,83 +6,82 @@
     <title>Loja de Instrumentos</title>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
 
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-        <img src="/logo.png" alt="Logo" class="logo">
+    <img src="/logo.png" alt="Logo" class="logo">
 
+    <ul>
+        <li><a href="/cadastro_de_produtos/cadastroDeProdutos.html">Cadastro de Produtos</a></li>
+        <li><a href="/cadastro_de_fornecedores/fornecedores.html">Fornecedores</a></li>
+        <li><a href="/cadastro_de_pessoa/cadastroDePessoas.html">Cadastro de Usuário</a></li>
+        <li><a href="/relatorio_de_vendas/relatorioVendas.html">Relatório de vendas</a></li>
+        <li><a href="/cadastro_de_vendas/cadastro_de_vendas.html">Cadastro de vendas</a></li>
+    </ul>
 
-        <ul>
-            <li><a href="/cadastro_de_produtos/cadastroDeProdutos.html"> Cadastro de Produtos</a></li>
-            <li><a href="/cadastro_de_fornecedores/fornecedores.html">Fornecedores</a></li>
-            <li><a href="/cadastro_de_pessoa/cadastroDePessoas.html"> Cadastro de Usuário</a></li>
-            <li><a href="/relatorio_de_vendas/relatorioVendas.html"> Relatório de vendas</a></li>
-            <li><a href="/cadastro_de_vendas/cadastro_de_vendas.html"> Cadastro de vendas</a></li>
+</aside>
 
-        </ul>
-    </aside>
+<!-- CONTEÚDO -->
+<main class="main">
 
+    <!-- CARDS -->
+    <section class="cards">
 
-    <!-- CONTEÚDO -->
-    <main class="main">
+        <div class="card">
+            <h3>Vendas</h3>
+            <p>67.345</p>
+        </div>
 
+        <div class="card">
+            <h3>Clientes</h3>
+            <p>2.343</p>
+        </div>
 
+        <div class="card">
+            <h3>Pedidos</h3>
+            <p>35.343</p>
+        </div>
 
+    </section>
 
-        <!-- CARDS -->
-        <section class="cards">
-            <div class="card">
-                <h3>Vendas</h3>
-                <p>67.345</p>
-            </div>
-            <div class="card">
-                <h3>Clientes</h3>
-                <p>2.343</p>
-            </div>
-            <div class="card">
-                <h3>Pedidos</h3>
-                <p>35.343</p>
-            </div>
-        </section>
+    <!-- MURAL -->
+    <section class="quadro-container">
 
+        <h2>Mural de Avisos</h2>
 
-        <!-- MURAL -->
-        <section class="quadro-container">
-            <h2>Mural de Avisos</h2>
+        <!-- FORMULÁRIO -->
+        <div class="card-aviso">
 
-            <div class="adicionar_aviso">
-                <input type="text" placeholder="Adicionar aviso">
-                <button class="btn-green">Adicionar</button>
-            </div>
+            <h3>Novo Aviso</h3>
 
-            <div class="aviso">
-                <span class="data">20/10/2023</span>
-                <h3>Feriado Próxima Semana</h3>
-                <p>Não haverá expediente na segunda-feira devido ao feriado nacional.</p>
-            </div>
+            <label>Título</label>
+            <input type="text" id="tituloAviso">
 
+            <label>Mensagem</label>
+            <textarea id="mensagemAviso"></textarea>
 
-            <div class="aviso">
-                <span class="data">19/10/2023</span>
-                <h3>Manutenção na Rede</h3>
-                <p>A internet ficará instável das 14h às 16h.</p>
-            </div>
+            <label>Quem escreveu</label>
+            <select id="autorAviso">
+                <option value="">Selecione o funcionário</option>
+            </select>
 
+            <button class="btn-green" onclick="salvarAviso()">
+                Salvar Aviso
+            </button>
 
-            <div class="aviso">
-                <span class="data">18/10/2023</span>
-                <h3>Reunião Geral</h3>
-                <p>Reunião mensal no auditório às 10h.</p>
-            </div>
+        </div>
 
+        <!-- LISTA -->
+        <div id="listaAvisos"></div>
 
-        </section>
+    </section>
 
+</main>
 
-    </main>
-
+<script src="index.js"></script>
 
 </body>
 </html>
