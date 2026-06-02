@@ -1,85 +1,85 @@
+// ==========================
+// BASE DAS APIs
+// ==========================
+const API_BASE = "http://localhost:3000";
 
-const API_VENDAS = "http://localhost:3000/vendas";
-const API_CLIENTES = "http://localhost:3000/clientes";
-const API_PRODUTOS = "http://localhost:3000/produtos";
+const API_PRODUTOS = `${API_BASE}/produtos`;
+const API_PESSOAS = `${API_BASE}/pessoas`;
+const API_VENDAS = `${API_BASE}/vendas`;
+const API_FORNECEDORES = `${API_BASE}/fornecedores`;
 
+// ==========================
+// VARIÁVEIS GLOBAIS
+// ==========================
 let vendas = [];
 let clientes = [];
 let produtos = [];
-
 let carrinho = [];
 
 // ==========================
-// INICIAR
+// INICIALIZAÇÃO
 // ==========================
 document.addEventListener("DOMContentLoaded", () => {
-
     carregarClientes();
     carregarProdutos();
     carregarVendas();
-
 });
 
 // ==========================
 // CARREGAR CLIENTES
 // ==========================
 async function carregarClientes() {
+    try {
+        const res = await fetch(API_PESSOAS);
+        const pessoas = await res.json();
+        clientes = pessoas.filter(p => p.categoria === "Cliente");
 
-    const res = await fetch(API_CLIENTES);
-    clientes = await res.json();
-
-    const select = document.querySelector("#cliente");
-
-    clientes.forEach(cliente => {
-
-        select.innerHTML += `
-            <option value="${cliente.id}">
-                ${cliente.nome}
-            </option>
-        `;
-    });
+        const select = document.querySelector("#cliente");
+        select.innerHTML = `<option value="">Selecione um cliente</option>`;
+        clientes.forEach(cliente => {
+            select.innerHTML += `<option value="${cliente.id}">${cliente.nome}</option>`;
+        });
+    } catch (error) {
+        console.error("Erro ao carregar clientes:", error);
+    }
 }
 
 // ==========================
 // CARREGAR PRODUTOS
 // ==========================
 async function carregarProdutos() {
+    try {
+        const res = await fetch(API_PRODUTOS);
+        produtos = await res.json();
 
-    const res = await fetch(API_PRODUTOS);
-    produtos = await res.json();
-
-    const select = document.querySelector("#produto");
-
-    produtos.forEach(produto => {
-
-        select.innerHTML += `
-            <option 
-                value="${produto.id}"
-                data-preco="${produto.preco}"
-            >
-                ${produto.nome}
-            </option>
-        `;
-    });
+        const select = document.querySelector("#produto");
+        select.innerHTML = `<option value="">Selecione um produto</option>`;
+        produtos.forEach(produto => {
+            select.innerHTML += `<option value="${produto.id}" data-preco="${produto.preco}">${produto.nome}</option>`;
+        });
+    } catch (error) {
+        console.error("Erro ao carregar produtos:", error);
+    }
 }
 
 // ==========================
-// ADICIONAR ITEM
+// ADICIONAR ITEM AO CARRINHO
 // ==========================
 function adicionarItem() {
-
     const produtoSelect = document.querySelector("#produto");
     const quantidade = Number(document.querySelector("#quantidade").value);
 
     if (!produtoSelect.value || quantidade <= 0) {
-
         alert("Selecione produto e quantidade!");
         return;
     }
 
-    const produtoId = produtoSelect.value;
-
-    const produto = produtos.find(p => String(p.id) === produtoId);
+    const option = produtoSelect.selectedOptions[0];
+    const produto = {
+        id: option.value,
+        nome: option.textContent,
+        preco: Number(option.dataset.preco)
+    };
 
     const subtotal = produto.preco * quantidade;
 
@@ -94,12 +94,10 @@ function adicionarItem() {
 }
 
 // ==========================
-// RENDER CARRINHO
+// RENDERIZAR CARRINHO
 // ==========================
 function renderCarrinho() {
-
     const tabela = document.querySelector("#carrinho");
-
     tabela.innerHTML = `
         <tr>
             <th>Produto</th>
@@ -109,11 +107,8 @@ function renderCarrinho() {
     `;
 
     let total = 0;
-
     carrinho.forEach(item => {
-
         total += item.subtotal;
-
         tabela.innerHTML += `
             <tr>
                 <td>${item.produto}</td>
@@ -123,16 +118,13 @@ function renderCarrinho() {
         `;
     });
 
-    document.querySelector("#total").innerText =
-        `Total: R$ ${total.toFixed(2)}`;
+    document.querySelector("#total").innerText = `Total: R$ ${total.toFixed(2)}`;
 }
 
 // ==========================
 // FINALIZAR VENDA
 // ==========================
-document.querySelector("form")
-.addEventListener("submit", async (e) => {
-
+document.querySelector("form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const clienteId = document.querySelector("#cliente").value;
@@ -140,19 +132,14 @@ document.querySelector("form")
     const data = document.querySelector("input[type='date']").value;
 
     if (!clienteId || carrinho.length === 0) {
-
         alert("Preencha os dados!");
         return;
     }
 
     const cliente = clientes.find(c => String(c.id) === clienteId);
-
-    const total = carrinho.reduce((soma, item) => {
-        return soma + item.subtotal;
-    }, 0);
+    const total = carrinho.reduce((soma, item) => soma + item.subtotal, 0);
 
     const venda = {
-
         clienteId,
         cliente: cliente.nome,
         itens: carrinho,
@@ -161,184 +148,122 @@ document.querySelector("form")
         data
     };
 
-    await fetch(API_VENDAS, {
+    try {
+        await fetch(API_VENDAS, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(venda)
+        });
 
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify(venda)
-    });
-
-    alert("Venda salva!");
-
-    carrinho = [];
-
-    renderCarrinho();
-
-    carregarVendas();
-
-    document.querySelector("form").reset();
-
+        alert("Venda salva!");
+        carrinho = [];
+        renderCarrinho();
+        carregarVendas();
+        document.querySelector("form").reset();
+    } catch (error) {
+        console.error("Erro ao salvar venda:", error);
+    }
 });
 
 // ==========================
 // CARREGAR VENDAS
 // ==========================
 async function carregarVendas() {
-
-    const res = await fetch(API_VENDAS);
-
-    vendas = await res.json();
-
-    renderVendas();
+    try {
+        const res = await fetch(API_VENDAS);
+        vendas = await res.json();
+        renderVendas();
+    } catch (error) {
+        console.error("Erro ao carregar vendas:", error);
+    }
 }
 
 // ==========================
 // RENDER VENDAS
 // ==========================
-
 function renderVendas(lista = vendas) {
-
     const tbody = document.querySelector("#tabela-vendas");
-
     tbody.innerHTML = "";
 
     lista.forEach(venda => {
-
-        venda.itens.forEach(item => {
-
+        const itens = Array.isArray(venda.itens) ? venda.itens : [];
+        itens.forEach((item, index) => {
             tbody.innerHTML += `
                 <tr>
-
-                    <td>${venda.id}</td>
-
-                    <td>${venda.cliente}</td>
-
-                    <td>${item.produto}</td>
-
-                    <td>${item.quantidade}</td>
-
-                    <td>${venda.data}</td>
-
-                    <td>${venda.pagamento}</td>
-
+                    <td>${index === 0 ? venda.id : ""}</td>
+                    <td>${index === 0 ? (venda.cliente || "") : ""}</td>
+                    <td>${item.produto || ""}</td>
+                    <td>${item.quantidade || 0}</td>
+                    <td>${index === 0 ? (venda.data || "") : ""}</td>
+                    <td>${index === 0 ? (venda.pagamento || "") : ""}</td>
                     <td>
-
-                        <button onclick="editarVenda('${venda.id}')">
-                            Editar
-                        </button>
-
-                        <button onclick="excluirVenda('${venda.id}')">
-                            Excluir
-                        </button>
-
+                        ${index === 0 ? `
+                            <button onclick="editarVenda('${venda.id}')">Editar</button>
+                            <button onclick="excluirVenda('${venda.id}')">Excluir</button>
+                        ` : ""}
                     </td>
-
                 </tr>
             `;
         });
     });
 }
 
-
+// ==========================
+// FILTRAR VENDAS
+// ==========================
 function filtrarVendas() {
+    const texto = document.querySelector("#buscarProduto").value.toLowerCase();
+    const data = document.querySelector("#buscarData").value;
 
-    const texto = document
-        .querySelector("#buscarProduto")
-        .value
-        .toLowerCase();
-
-    const data = document
-        .querySelector("#buscarData")
-        .value;
-
-    const filtradas = vendas
-        .map(venda => {
-
-            // filtra itens dentro da venda
-            const itensFiltrados = venda.itens.filter(item => {
-
-                return item.produto
-                    .toLowerCase()
-                    .includes(texto);
-            });
-
-            // se não bate data, remove venda inteira
-            const dataOk =
-                data === "" || venda.data === data;
-
-            if (!dataOk || itensFiltrados.length === 0) {
-                return null;
-            }
-
-            return {
-                ...venda,
-                itens: itensFiltrados
-            };
-        })
-        .filter(v => v !== null);
+    const filtradas = vendas.filter(venda => {
+        const dataOk = !data || venda.data === data;
+        const itensOk = venda.itens.some(item => item.produto.toLowerCase().includes(texto));
+        return dataOk && itensOk;
+    });
 
     renderVendas(filtradas);
 }
-
-
-
-
 window.filtrarVendas = filtrarVendas;
 
-
 // ==========================
-// EXCLUIR
+// EXCLUIR VENDA
 // ==========================
 async function excluirVenda(id) {
-
     if (!confirm("Deseja excluir?")) return;
-
-    await fetch(`${API_VENDAS}/${id}`, {
-
-        method: "DELETE"
-    });
-
-    carregarVendas();
+    try {
+        await fetch(`${API_VENDAS}/${id}`, { method: "DELETE" });
+        carregarVendas();
+    } catch (error) {
+        console.error("Erro ao excluir venda:", error);
+    }
 }
+window.excluirVenda = excluirVenda;
 
+// ==========================
+// EDITAR VENDA
+// ==========================
 function editarVenda(id) {
-
     const venda = vendas.find(v => String(v.id) === String(id));
-
     if (!venda) return;
 
     // cliente
-    const cliente = clientes.find(c =>
-        String(c.id) === String(venda.clienteId)
-    );
-
+    const cliente = clientes.find(c => String(c.id) === String(venda.clienteId));
     document.querySelector("#cliente").value = cliente.id;
 
-    // pagamento
-    document.querySelector("#categoria").value =
-        venda.pagamento;
-
-    // data
-    document.querySelector("input[type='date']").value =
-        venda.data;
+    // pagamento e data
+    document.querySelector("#categoria").value = venda.pagamento;
+    document.querySelector("input[type='date']").value = venda.data;
 
     // carrinho
     carrinho = venda.itens;
-
     renderCarrinho();
 
     // remove venda antiga
     excluirVenda(id);
 }
-
 window.editarVenda = editarVenda;
 
-
-
-window.excluirVenda = excluirVenda;
+// ==========================
+// BOTÕES GLOBAIS
+// ==========================
 window.adicionarItem = adicionarItem;
-

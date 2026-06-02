@@ -1,5 +1,7 @@
-const API_URL = "http://localhost:3000/produtos";
-const API_FORNECEDORES = "http://localhost:3000/fornecedores";
+const API_BASE = "http://localhost:3000";
+
+const API_PRODUTOS = `${API_BASE}/produtos`;
+const API_FORNECEDORES = `${API_BASE}/fornecedores`;
 
 let fornecedores = [];
 let produtos = [];
@@ -8,57 +10,73 @@ let produtoEditandoId = null;
 // ==========================
 // INICIAR
 // ==========================
-document.addEventListener("DOMContentLoaded", () => {
-    carregarProdutos();
-    carregarFornecedores();
+document.addEventListener("DOMContentLoaded", async () => {
+    await carregarFornecedoresSelect();
+    await carregarProdutos();
 });
 
 // ==========================
-// CARREGAR
+// CARREGAR PRODUTOS
 // ==========================
 async function carregarProdutos() {
-    const res = await fetch(API_URL);
-    produtos = await res.json();
+    try {
+        const res = await fetch(API_PRODUTOS);
+        produtos = await res.json();
 
-    renderTabela(produtos);
-    atualizarStats();
+        renderTabela(produtos);
+        atualizarStats();
+    } catch (error) {
+        console.error("Erro ao carregar produtos:", error);
+    }
 }
 
-async function carregarFornecedores() {
+// ==========================
+// FORNECEDORES SELECT
+// ==========================
+async function carregarFornecedoresSelect() {
+    try {
+        const res = await fetch(API_FORNECEDORES);
+        fornecedores = await res.json();
 
-    const res = await fetch(API_FORNECEDORES);
-    fornecedores = await res.json();
+        const select = document.querySelector("#fornecedor");
+        select.innerHTML = '<option value="">Selecione o fornecedor</option>';
 
-    const select = document.querySelector("#fornecedor");
+        fornecedores.forEach(f => {
+            const option = document.createElement("option");
+            option.value = f.id;
+            option.textContent = f.empresa || f.nome || "Fornecedor";
+            select.appendChild(option);
+        });
 
-    fornecedores.forEach(fornecedor => {
-
-        select.innerHTML += `
-            <option value="${fornecedor.id}">
-                ${fornecedor.nome}
-            </option>
-        `;
-    });
+    } catch (error) {
+        console.error("Erro ao carregar fornecedores:", error);
+    }
 }
+
 // ==========================
 // RENDER TABELA
 // ==========================
 function renderTabela(lista) {
     const tabela = document.querySelector("#tabela");
-
     tabela.innerHTML = "";
 
     lista.forEach(produto => {
+
+        const fornecedorNome =
+            fornecedores.find(f => String(f.id) === String(produto.fornecedor))
+                ?.empresa ||
+            fornecedores.find(f => String(f.id) === String(produto.fornecedor))
+                ?.nome ||
+            "";
 
         tabela.innerHTML += `
             <tr>
                 <td>${produto.nome}</td>
                 <td>${produto.marca}</td>
                 <td>${produto.categoria}</td>
-                <td>${produto.tipo}</td>
-                <td>${fornecedores.find(f => String(f.id) === String(produto.fornecedor))?.nome || ""}</td>
+                <td>R$ ${produto.preco || 0}</td>
+                <td>${fornecedorNome}</td>
                 <td>${produto.garantia}</td>
-
                 <td>
                     <button onclick="editarProduto('${produto.id}')">Editar</button>
                     <button onclick="excluirProduto('${produto.id}')">Excluir</button>
@@ -69,7 +87,7 @@ function renderTabela(lista) {
 }
 
 // ==========================
-// SALVAR (CRIAR / EDITAR)
+// SALVAR PRODUTO
 // ==========================
 async function salvarProduto() {
 
@@ -78,7 +96,7 @@ async function salvarProduto() {
         marca: document.querySelector("#marca").value,
         quantidade: document.querySelector("#quantidade").value,
         categoria: document.querySelector("#categoria").value,
-        tipo: document.querySelector("#tipo").value,
+        preco: document.querySelector("#preco").value,
         especificacoes: document.querySelector("#especificacoes").value,
         fornecedor: document.querySelector("#fornecedor").value,
         garantia: document.querySelector("#garantia").value,
@@ -90,34 +108,33 @@ async function salvarProduto() {
         return;
     }
 
-    // EDITAR
-    if (produtoEditandoId) {
+    try {
 
-        await fetch(`${API_URL}/${produtoEditandoId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(produto)
-        });
+        if (produtoEditandoId) {
 
-        produtoEditandoId = null;
+            await fetch(`${API_PRODUTOS}/${produtoEditandoId}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(produto)
+            });
 
-    } 
-    // CRIAR
-    else {
+            produtoEditandoId = null;
 
-        await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(produto)
-        });
+        } else {
+
+            await fetch(API_PRODUTOS, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(produto)
+            });
+        }
+
+        limparFormulario();
+        carregarProdutos();
+
+    } catch (error) {
+        console.error("Erro ao salvar produto:", error);
     }
-
-    limparFormulario();
-    carregarProdutos();
 }
 
 // ==========================
@@ -126,14 +143,13 @@ async function salvarProduto() {
 function editarProduto(id) {
 
     const produto = produtos.find(p => String(p.id) === String(id));
-
     if (!produto) return;
 
     document.querySelector("#nome").value = produto.nome;
     document.querySelector("#marca").value = produto.marca;
     document.querySelector("#quantidade").value = produto.quantidade;
     document.querySelector("#categoria").value = produto.categoria;
-    document.querySelector("#tipo").value = produto.tipo;
+    document.querySelector("#preco").value = produto.preco;
     document.querySelector("#especificacoes").value = produto.especificacoes;
     document.querySelector("#fornecedor").value = produto.fornecedor;
     document.querySelector("#garantia").value = produto.garantia;
@@ -149,11 +165,17 @@ async function excluirProduto(id) {
 
     if (!confirm("Deseja excluir?")) return;
 
-    await fetch(`${API_URL}/${id}`, {
-        method: "DELETE"
-    });
+    try {
 
-    carregarProdutos();
+        await fetch(`${API_PRODUTOS}/${id}`, {
+            method: "DELETE"
+        });
+
+        carregarProdutos();
+
+    } catch (error) {
+        console.error("Erro ao excluir produto:", error);
+    }
 }
 
 // ==========================
@@ -179,7 +201,7 @@ function limparFormulario() {
     document.querySelector("#marca").value = "";
     document.querySelector("#quantidade").value = "";
     document.querySelector("#categoria").value = "";
-    document.querySelector("#tipo").value = "";
+    document.querySelector("#preco").value = "";
     document.querySelector("#especificacoes").value = "";
     document.querySelector("#fornecedor").value = "";
     document.querySelector("#garantia").value = "";
@@ -187,7 +209,7 @@ function limparFormulario() {
 }
 
 // ==========================
-// FUNÇÕES GLOBAIS (IMPORTANTE)
+// GLOBAIS
 // ==========================
 window.editarProduto = editarProduto;
 window.excluirProduto = excluirProduto;

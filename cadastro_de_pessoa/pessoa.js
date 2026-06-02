@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3000/pessoas";
+const API_BASE = "http://localhost:3000";
+const API_PESSOAS = `${API_BASE}/pessoas`;
 
 let pessoas = [];
 let pessoaEditandoId = null;
@@ -26,10 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // CARREGAR PESSOAS
 // ==========================
 async function carregarPessoas() {
-    const res = await fetch(API_URL);
-    pessoas = await res.json();
+    try {
+        const res = await fetch(API_PESSOAS);
+        pessoas = await res.json();
 
-    renderTabela(pessoas);
+        renderTabela(pessoas);
+    } catch (error) {
+        console.error("Erro ao carregar pessoas:", error);
+    }
 }
 
 // ==========================
@@ -38,7 +43,6 @@ async function carregarPessoas() {
 function renderTabela(lista) {
 
     const tabela = document.querySelector("#tabela");
-
     tabela.innerHTML = "";
 
     lista.forEach(pessoa => {
@@ -52,13 +56,11 @@ function renderTabela(lista) {
                 <td>${pessoa.categoria}</td>
 
                 <td>
-                    <button class="btn-edit"
-                        onclick="editarPessoa('${pessoa.id}')">
+                    <button class="btn-edit" onclick="editarPessoa('${pessoa.id}')">
                         Editar
                     </button>
 
-                    <button class="btn-delete"
-                        onclick="excluirPessoa('${pessoa.id}')">
+                    <button class="btn-delete" onclick="excluirPessoa('${pessoa.id}')">
                         Excluir
                     </button>
                 </td>
@@ -82,45 +84,42 @@ async function salvarPessoa(e) {
         categoria: document.querySelector("#categoria").value
     };
 
-    if (
-        !pessoa.nome ||
-        !pessoa.email ||
-        !pessoa.cpf ||
-        !pessoa.telefone ||
-        !pessoa.categoria
-    ) {
+    if (!pessoa.nome || !pessoa.email || !pessoa.cpf || !pessoa.telefone || !pessoa.categoria) {
         alert("Preencha todos os campos!");
         return;
     }
 
-    // EDITAR
-    if (pessoaEditandoId) {
+    try {
 
-        await fetch(`${API_URL}/${pessoaEditandoId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(pessoa)
-        });
+        if (pessoaEditandoId) {
 
-        pessoaEditandoId = null;
+            await fetch(`${API_PESSOAS}/${pessoaEditandoId}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pessoa)
+            });
+
+            pessoaEditandoId = null;
+
+        } else {
+
+            await fetch(API_PESSOAS, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pessoa)
+            });
+        }
+
+        limparFormulario();
+        carregarPessoas();
+
+    } catch (error) {
+        console.error("Erro ao salvar pessoa:", error);
     }
-
-    // NOVO CADASTRO
-    else {
-
-        await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(pessoa)
-        });
-    }
-
-    limparFormulario();
-    carregarPessoas();
 }
 
 // ==========================
@@ -128,10 +127,7 @@ async function salvarPessoa(e) {
 // ==========================
 function editarPessoa(id) {
 
-    const pessoa = pessoas.find(
-        p => String(p.id) === String(id)
-    );
-
+    const pessoa = pessoas.find(p => String(p.id) === String(id));
     if (!pessoa) return;
 
     document.querySelector("#nome").value = pessoa.nome;
@@ -148,14 +144,19 @@ function editarPessoa(id) {
 // ==========================
 async function excluirPessoa(id) {
 
-    if (!confirm("Deseja excluir este cadastro?"))
-        return;
+    if (!confirm("Deseja excluir este cadastro?")) return;
 
-    await fetch(`${API_URL}/${id}`, {
-        method: "DELETE"
-    });
+    try {
 
-    carregarPessoas();
+        await fetch(`${API_PESSOAS}/${id}`, {
+            method: "DELETE"
+        });
+
+        carregarPessoas();
+
+    } catch (error) {
+        console.error("Erro ao excluir pessoa:", error);
+    }
 }
 
 // ==========================
@@ -177,25 +178,13 @@ function limparFormulario() {
 // ==========================
 function filtrar() {
 
-    const nome = document
-        .querySelector("#buscaNome")
-        .value
-        .toLowerCase();
-
-    const cpf = document
-        .querySelector("#buscaCpf")
-        .value
-        .toLowerCase();
+    const nome = document.querySelector("#buscaNome").value.toLowerCase();
+    const cpf = document.querySelector("#buscaCpf").value.toLowerCase();
 
     const filtrados = pessoas.filter(pessoa => {
 
-        const nomeOk = pessoa.nome
-            .toLowerCase()
-            .includes(nome);
-
-        const cpfOk = pessoa.cpf
-            .toLowerCase()
-            .includes(cpf);
+        const nomeOk = pessoa.nome.toLowerCase().includes(nome);
+        const cpfOk = pessoa.cpf.toLowerCase().includes(cpf);
 
         return nomeOk && cpfOk;
     });
@@ -204,7 +193,7 @@ function filtrar() {
 }
 
 // ==========================
-// FUNÇÕES GLOBAIS
+// GLOBAIS
 // ==========================
 window.editarPessoa = editarPessoa;
 window.excluirPessoa = excluirPessoa;

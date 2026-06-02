@@ -1,6 +1,7 @@
 const API_URL = "http://localhost:3000/avisos";
 const API_USUARIOS = "http://localhost:3000/usuarios";
 
+
 let avisos = [];
 let usuarios = [];
 let avisoEditandoId = null;

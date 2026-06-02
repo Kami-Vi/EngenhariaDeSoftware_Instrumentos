@@ -1,0 +1,114 @@
+{
+  "produtos": [
+    {
+      "id": "vh-1PWWeNQU",
+      "nome": "violao",
+      "marca": "sada",
+      "quantidade": "12",
+      "categoria": "Instrumento",
+      "preco": "2",
+      "especificacoes": "wedwe",
+      "fornecedor": "1",
+      "garantia": "12",
+      "contato": "123124"
+    },
+    {
+      "id": "TfKkyqshlOM",
+      "nome": "palheta",
+      "marca": "asdasd",
+      "quantidade": "2",
+      "categoria": "Acessório",
+      "preco": "21",
+      "especificacoes": "dgdrg",
+      "fornecedor": "1",
+      "garantia": "12",
+      "contato": "67456"
+    },
+    {
+      "id": "lbRRCAOPTcI",
+      "nome": "violao",
+      "marca": "sada",
+      "quantidade": "4234",
+      "categoria": "Instrumento",
+      "preco": "2",
+      "especificacoes": "3rfrfe",
+      "fornecedor": "",
+      "garantia": "234",
+      "contato": "234254"
+    },
+    {
+      "id": "Tpb53cDOUjI",
+      "nome": "violao",
+      "marca": "qdwas",
+      "quantidade": "2",
+      "categoria": "Instrumento",
+      "preco": "200",
+      "especificacoes": "awsd",
+      "fornecedor": "",
+      "garantia": "weff",
+      "contato": "wef"
+    }
+  ],
+  "fornecedores": [
+    {
+      "id": "1",
+      "empresa": "Yamaha Brasil",
+      "cnpj": "12.345.678/0001-99",
+      "cep": "01000-000",
+      "complemento": "Matriz"
+    },
+    {
+      "id": "UAOqA0ZqTnA",
+      "empresa": "asdas",
+      "cnpj": "12345678901234",
+      "cep": "123123",
+      "complemento": "dfgef"
+    },
+    {
+      "empresa": "fgaersger",
+      "cnpj": "09876543213462",
+      "cep": "2343",
+      "complemento": "sdf",
+      "id": "BCzRwpFAUmA"
+    }
+  ],
+  "pessoas": [
+    {
+      "nome": "agata",
+      "email": "agata@askdj",
+      "cpf": "1231",
+      "telefone": "3123",
+      "categoria": "Cliente",
+      "id": "d9JhqirTBAQ"
+    },
+    {
+      "nome": "alana",
+      "email": "alana@dsfsd",
+      "cpf": "4243",
+      "telefone": "23423",
+      "categoria": "Funcionário",
+      "id": "dDT1fdz184A"
+    }
+  ],
+  "vendas": [
+    {
+      "clienteId": "d9JhqirTBAQ",
+      "cliente": "agata",
+      "itens": [
+        {
+          "produtoId": "TfKkyqshlOM",
+          "produto": "palheta",
+          "quantidade": 2,
+          "subtotal": 42
+        }
+      ],
+      "total": 42,
+      "pagamento": "Credito",
+      "data": "2026-06-02",
+      "id": "JvkDSDZvWy0"
+    }
+  ],
+
+  
+  "$schema": "./node_modules/json-server/schema.json"
+}
