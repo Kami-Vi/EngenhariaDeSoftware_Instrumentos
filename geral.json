@@ -58,18 +58,11 @@
       "complemento": "Matriz"
     },
     {
-      "id": "UAOqA0ZqTnA",
-      "empresa": "asdas",
-      "cnpj": "12345678901234",
-      "cep": "123123",
-      "complemento": "dfgef"
-    },
-    {
-      "empresa": "fgaersger",
-      "cnpj": "09876543213462",
-      "cep": "2343",
-      "complemento": "sdf",
-      "id": "BCzRwpFAUmA"
+      "empresa": "jtdjdfgj",
+      "cnpj": "74445555556325",
+      "cep": "10203010",
+      "complemento": "k",
+      "id": "mpr1KRwOoxM"
     }
   ],
   "pessoas": [
@@ -106,15 +99,6 @@
       "pagamento": "Credito",
       "data": "2026-06-02",
       "id": "JvkDSDZvWy0"
-    }
-  ],
-  "avisos": [
-    {
-      "titulo": "Ferias",
-      "mensagem": "sdf",
-      "autor": "d9JhqirTBAQ",
-      "data": "19/06/2026",
-      "id": "7M6GpTv1FMI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
