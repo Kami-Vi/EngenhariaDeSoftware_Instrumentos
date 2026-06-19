@@ -4,16 +4,12 @@ const API_FORNECEDORES = `${API_BASE}/fornecedores`;
 let fornecedores = [];
 let fornecedorEditandoId = null;
 
-// ==========================
-// INICIAR
-// ==========================
+
 document.addEventListener("DOMContentLoaded", () => {
     carregarFornecedores();
 });
 
-// ==========================
-// CARREGAR
-// ==========================
+
 async function carregarFornecedores() {
 
     try {
@@ -26,9 +22,7 @@ async function carregarFornecedores() {
     }
 }
 
-// ==========================
-// RENDER TABELA
-// ==========================
+
 function renderTabela(lista) {
 
     const tabela = document.querySelector("#tabela");
@@ -52,9 +46,7 @@ function renderTabela(lista) {
     });
 }
 
-// ==========================
-// SALVAR (CRIAR / EDITAR)
-// ==========================
+
 async function salvarFornecedor() {
 
     const fornecedor = {
@@ -69,13 +61,28 @@ async function salvarFornecedor() {
         return;
     }
 
+    if (!cnpj.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "O CNPJ deve conter apenas números!");
+        return;
+    }
+    
+    if (!cep.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "O CEP deve conter apenas números!");
+        return;
+    }
+
     const cnpjLimpo = fornecedor.cnpj.replace(/\D/g, "");
 
     if (cnpjLimpo.length !== 14) {
         alert("O CNPJ deve conter 14 números!");
         return;
     }
+    const cep = fornecedor.cep.replace(/\D/g, "");
 
+    if (!/^\d{8}$/.test(cep)) {
+        alert("CEP inválido! Deve conter 8 números.");
+        return;
+    }
     try {
 
         if (fornecedorEditandoId) {
@@ -109,9 +116,7 @@ async function salvarFornecedor() {
     }
 }
 
-// ==========================
-// EDITAR
-// ==========================
+
 function editarFornecedor(id) {
 
     const fornecedor = fornecedores.find(f => String(f.id) === String(id));
@@ -125,9 +130,7 @@ function editarFornecedor(id) {
     fornecedorEditandoId = id;
 }
 
-// ==========================
-// EXCLUIR
-// ==========================
+
 async function excluirFornecedor(id) {
 
     if (!confirm("Deseja excluir este fornecedor?")) return;
@@ -144,9 +147,6 @@ async function excluirFornecedor(id) {
     }
 }
 
-// ==========================
-// LIMPAR
-// ==========================
 function limparFormulario() {
 
     document.querySelector("#empresa").value = "";
@@ -157,9 +157,7 @@ function limparFormulario() {
     fornecedorEditandoId = null;
 }
 
-// ==========================
-// FILTRO
-// ==========================
+
 function filtrar() {
 
     const texto = document.querySelector("#busca").value.toLowerCase();
@@ -174,9 +172,6 @@ function filtrar() {
     renderTabela(filtrados);
 }
 
-// ==========================
-// GLOBAIS
-// ==========================
 window.salvarFornecedor = salvarFornecedor;
 window.editarFornecedor = editarFornecedor;
 window.excluirFornecedor = excluirFornecedor;
