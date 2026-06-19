@@ -108,7 +108,14 @@
       "id": "JvkDSDZvWy0"
     }
   ],
-
-  
+  "avisos": [
+    {
+      "titulo": "fsdf",
+      "mensagem": "sdf",
+      "autor": "d9JhqirTBAQ",
+      "data": "19/06/2026",
+      "id": "7M6GpTv1FMI"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -1,8 +1,0 @@
-{
-  "produtos": [],
-  "fornecedores": [],
-  "usuarios": [],
-  "vendas": [],
-  "avisos": [],
-  "$schema": "./node_modules/json-server/schema.json"
-}
