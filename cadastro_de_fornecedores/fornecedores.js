@@ -62,7 +62,7 @@ async function salvarFornecedor() {
     }
 
     if (!cnpj.matches("\\d+")) {
-        JOptionPane.showMessageDialog(null, "O CNPJ deve conter apenas números!");
+        alert(null, "O CNPJ deve conter apenas números!");
         return;
     }
     
