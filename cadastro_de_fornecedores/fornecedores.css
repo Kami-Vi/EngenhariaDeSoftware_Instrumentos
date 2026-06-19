@@ -6,7 +6,6 @@ body {
     background:#e9e7e3;
 }
 
-/* HEADER */
 .header {
     background:rgb(75,0,0);
     color:white;
@@ -21,12 +20,10 @@ body {
     text-decoration: none;
 }
 
-/* LOGO */
 .logo-area img {
     height:80px;
 }
 
-/* TITULO */
 .titulo-header {
     font-size:20px;
     font-weight:bold;
@@ -34,14 +31,12 @@ body {
     text-align:center;
 }
 
-/* GRID */
 .container {
     display:flex;
     padding:20px;
     gap:20px;
 }
 
-/* CARD */
 .card {
     background:white;
     border-radius:10px;
@@ -49,17 +44,14 @@ body {
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* LEFT */
 .left {
     width:300px;
 }
 
-/* RIGHT */
 .right {
     flex:1;
 }
 
-/* INPUTS */
 input, select, textarea {
     width:100%;
     padding:8px;
@@ -68,7 +60,6 @@ input, select, textarea {
     border:1px solid #ccc;
 }
 
-/* BUTTON */
 button {
     padding:10px;
     border:none;
@@ -82,12 +73,12 @@ button {
     font-weight:bold;
 }
 
-/* HOVER botão */
+
 .btn-green:hover {
     background:rgb(150,0,0);
 }
 
-/* TABLE */
+
 table {
     width:100%;
     border-collapse:collapse;
@@ -103,12 +94,12 @@ th {
     background:#f0f0f0;
 }
 
-/* LINHA HOVER */
+
 tr:hover {
     background:#fafafa;
 }
 
-/* FILTER */
+
 .filtros {
     display:flex;
     gap:10px;

@@ -61,28 +61,18 @@ async function salvarFornecedor() {
         return;
     }
 
-    if (!cnpj.matches("\\d+")) {
-        alert(null, "O CNPJ deve conter apenas números!");
-        return;
-    }
-    
-    if (!cep.matches("\\d+")) {
-        JOptionPane.showMessageDialog(null, "O CEP deve conter apenas números!");
-        return;
-    }
-
     const cnpjLimpo = fornecedor.cnpj.replace(/\D/g, "");
 
     if (cnpjLimpo.length !== 14) {
         alert("O CNPJ deve conter 14 números!");
         return;
     }
-    const cep = fornecedor.cep.replace(/\D/g, "");
+    String cep = txtCep.getText();
 
-    if (!/^\d{8}$/.test(cep)) {
-        alert("CEP inválido! Deve conter 8 números.");
-        return;
-    }
+if (!cep.matches("\\d{8}")) {
+    JOptionPane.showMessageDialog(null, "CEP inválido! Deve conter 8 números.");
+    return;
+}
     try {
 
         if (fornecedorEditandoId) {
