@@ -29,7 +29,23 @@ async function carregarProdutos() {
         console.error("Erro ao carregar produtos:", error);
     }
 }
+function filtrar() {
 
+    const texto = document.querySelector("#busca").value.toLowerCase();
+
+    if (!texto) {
+        renderTabela(produtos);
+        return;
+    }
+
+    const filtrados = produtos.filter(p =>
+        p.nome.toLowerCase().includes(texto) ||
+        p.marca.toLowerCase().includes(texto) ||
+        p.categoria.toLowerCase().includes(texto)
+    );
+
+    renderTabela(filtrados);
+}
 // ==========================
 // FORNECEDORES SELECT
 // ==========================

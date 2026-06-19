@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 // ==========================
 async function carregarPessoas() {
     const res = await fetch(API_PESSOAS);
-    pessoas = await res.json();
+    const dados = await res.json();
+
+    // 👇 FILTRA SÓ FUNCIONÁRIOS
+    pessoas = dados.filter(p => p.categoria === "Funcionário");
 
     const select = document.querySelector("#autorAviso");
 
@@ -54,9 +57,11 @@ function renderAvisos() {
 
     avisos.forEach(aviso => {
 
-        const autor = pessoas.find(
+        const pessoa = pessoas.find(
             p => String(p.id) === String(aviso.autor)
-        )?.nome || "Desconhecido";
+        );
+
+        const autor = pessoa ? pessoa.nome : "Funcionário não encontrado";
 
         lista.innerHTML += `
             <div class="aviso">
@@ -67,7 +72,7 @@ function renderAvisos() {
 
                 <p>${aviso.mensagem}</p>
 
-                <small><strong>Autor:</strong> ${autor}</small>
+                <small><strong>Quem escreveu:</strong> ${autor}</small>
 
                 <div style="margin-top:10px">
 
