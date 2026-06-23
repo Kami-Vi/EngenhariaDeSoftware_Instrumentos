@@ -4,7 +4,7 @@
       "id": "vh-1PWWeNQU",
       "nome": "violao",
       "marca": "sada",
-      "quantidade": "12",
+      "quantidade": "0",
       "categoria": "Instrumento",
       "preco": "2",
       "especificacoes": "wedwe",
@@ -23,30 +23,6 @@
       "fornecedor": "1",
       "garantia": "12",
       "contato": "67456"
-    },
-    {
-      "id": "lbRRCAOPTcI",
-      "nome": "violao",
-      "marca": "sada",
-      "quantidade": "4234",
-      "categoria": "Instrumento",
-      "preco": "2",
-      "especificacoes": "3rfrfe",
-      "fornecedor": "",
-      "garantia": "234",
-      "contato": "234254"
-    },
-    {
-      "id": "Tpb53cDOUjI",
-      "nome": "violao",
-      "marca": "qdwas",
-      "quantidade": "2",
-      "categoria": "Instrumento",
-      "preco": "200",
-      "especificacoes": "awsd",
-      "fornecedor": "",
-      "garantia": "weff",
-      "contato": "wef"
     }
   ],
   "fornecedores": [
@@ -81,6 +57,14 @@
       "telefone": "23423",
       "categoria": "Funcionário",
       "id": "dDT1fdz184A"
+    },
+    {
+      "nome": "julia",
+      "email": "adasd@fasf",
+      "cpf": "123.123.141-43",
+      "telefone": "(43) 24242-4324",
+      "categoria": "Cliente",
+      "id": "yoVBjJuIDP4"
     }
   ],
   "vendas": [
@@ -99,7 +83,62 @@
       "pagamento": "Credito",
       "data": "2026-06-02",
       "id": "JvkDSDZvWy0"
+    },
+    {
+      "clienteId": "d9JhqirTBAQ",
+      "cliente": "agata",
+      "itens": [
+        {
+          "produtoId": "lbRRCAOPTcI",
+          "produto": "violao",
+          "quantidade": 2,
+          "subtotal": 4
+        },
+        {
+          "produtoId": "TfKkyqshlOM",
+          "produto": "palheta",
+          "quantidade": 1,
+          "subtotal": 21
+        }
+      ],
+      "total": 25,
+      "pagamento": "Credito",
+      "data": "2026-06-22",
+      "id": "Ecq8bH-aogw"
+    },
+    {
+      "clienteId": "d9JhqirTBAQ",
+      "cliente": "agata",
+      "itens": [
+        {
+          "produtoId": "vh-1PWWeNQU",
+          "produto": "violao",
+          "quantidade": 12,
+          "subtotal": 24
+        }
+      ],
+      "total": 24,
+      "pagamento": "Pix",
+      "data": "2026-06-22",
+      "id": "gw3fXgQ3z8I"
+    },
+    {
+      "clienteId": "d9JhqirTBAQ",
+      "cliente": "agata",
+      "itens": [
+        {
+          "produtoId": "vh-1PWWeNQU",
+          "produto": "violao",
+          "quantidade": 3,
+          "subtotal": 6
+        }
+      ],
+      "total": 6,
+      "pagamento": "Pix",
+      "data": "2026-06-22",
+      "id": "EAnefKBFFbI"
     }
   ],
+  "avisos": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

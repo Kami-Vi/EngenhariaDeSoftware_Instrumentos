@@ -85,10 +85,17 @@ function renderTabela(lista) {
                 ?.nome ||
             "";
 
+        const quantidadeNum = Number(produto.quantidade) || 0;
+        const low = quantidadeNum <= 5; // threshold visual (consistente com vendas.js LOW_STOCK_THRESHOLD)
+
         tabela.innerHTML += `
             <tr>
                 <td>${produto.nome}</td>
                 <td>${produto.marca}</td>
+                <td>
+                    ${quantidadeNum}
+                    ${low ? `<span class="badge low">Estoque baixo</span>` : ''}
+                </td>
                 <td>${produto.categoria}</td>
                 <td>R$ ${produto.preco || 0}</td>
                 <td>${fornecedorNome}</td>
