@@ -224,11 +224,14 @@ th {
 
 
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const cpfInput = document.getElementById("cpf");
     const telefoneInput = document.getElementById("telefone");
+    const form = document.getElementById("formCadastro");
 
+    // Máscara CPF
     cpfInput.addEventListener("input", function () {
 
         let valor = this.value.replace(/\D/g, "");
@@ -244,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.value = valor;
     });
 
+    // Máscara Telefone
     telefoneInput.addEventListener("input", function () {
 
         let valor = this.value.replace(/\D/g, "");
@@ -267,8 +271,47 @@ document.addEventListener("DOMContentLoaded", () => {
         this.value = valor;
     });
 
+    // Validação do formulário
+    form.addEventListener("submit", function(event) {
+
+        const nome = document.getElementById("nome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const cpf = cpfInput.value.replace(/\D/g, "");
+        const telefone = telefoneInput.value.replace(/\D/g, "");
+        const categoria = document.getElementById("categoria").value;
+
+        // Campos vazios
+        if (
+            nome === "" ||
+            email === "" ||
+            cpf === "" ||
+            telefone === "" ||
+            categoria === ""
+        ) {
+            alert("Preencha todos os campos!");
+            event.preventDefault();
+            return;
+        }
+
+        // CPF deve ter exatamente 11 números
+        if (cpf.length !== 11) {
+            alert("CPF inválido! Digite os 11 números do CPF.");
+            event.preventDefault();
+            return;
+        }
+
+        // Telefone deve ter 10 ou 11 números
+        if (telefone.length < 10 || telefone.length > 11) {
+            alert("Telefone inválido! Digite um telefone com 10 ou 11 números.");
+            event.preventDefault();
+            return;
+        }
+
+    });
+
 });
 </script>
+
 
 <script src="pessoa.js"></script>
 
