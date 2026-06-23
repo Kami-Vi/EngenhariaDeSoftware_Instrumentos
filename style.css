@@ -192,3 +192,13 @@ th {
     border-color: #c0392b;
     box-shadow: 0 0 0 3px rgba(192,57,43,0.06);
 }
+
+.btn-editar {
+    background: orange;
+    color: white;
+}
+
+.btn-excluir {
+    background: red;
+    color: white;
+}

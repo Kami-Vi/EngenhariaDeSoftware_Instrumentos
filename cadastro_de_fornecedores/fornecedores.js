@@ -38,8 +38,17 @@ function renderTabela(lista) {
                 <td>${fornecedor.complemento}</td>
 
                 <td>
-                    <button onclick="editarFornecedor('${fornecedor.id}')">Editar</button>
-                    <button onclick="excluirFornecedor('${fornecedor.id}')">Excluir</button>
+                    <button
+                        class="btn-editar"
+                        onclick="editarFornecedor('${fornecedor.id}')">
+                        Editar
+                    </button>
+
+                    <button
+                        class="btn-excluir"
+                        onclick="excluirFornecedor('${fornecedor.id}')">
+                        Excluir
+                    </button>
                 </td>
             </tr>
         `;
@@ -67,7 +76,13 @@ async function salvarFornecedor() {
         alert("O CNPJ deve conter 14 números!");
         return;
     }
-    String cep = txtCep.getText();
+
+    const cepLimpo = fornecedor.cep.replace(/\D/g, "");
+
+    if (cepLimpo.length !== 8) {
+        alert("O CEP deve conter 8 números!");
+        return;
+    }
 
 if (!cep.matches("\\d{8}")) {
     JOptionPane.showMessageDialog(null, "CEP inválido! Deve conter 8 números.");

@@ -120,3 +120,13 @@ tr:hover {
         width:100%;
     }
 }
+
+.btn-editar {
+    background: orange;
+    color: white;
+}
+
+.btn-excluir {
+    background: red;
+    color: white;
+}

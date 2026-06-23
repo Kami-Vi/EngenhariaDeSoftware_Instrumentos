@@ -102,8 +102,17 @@ function renderTabela(lista) {
                 <td>${produto.garantia}</td>
                 <td>
                     <button onclick="visualizarProduto('${produto.id}')">Visualizar</button>
-                    <button onclick="editarProduto('${produto.id}')">Editar</button>
-                    <button onclick="excluirProduto('${produto.id}')">Excluir</button>
+                    <button
+                        class="btn-editar"
+                        onclick="editarProduto('${produto.id}')">
+                        Editar
+                    </button>
+
+                    <button
+                        class="btn-excluir"
+                        onclick="excluirProduto('${produto.id}')">
+                        Excluir
+                    </button>
                 </td>
             </tr>
         `;

@@ -302,8 +302,18 @@ function renderVendas(lista = vendas) {
                     ${index === 0 ? `<td rowspan="${rowspan}">${venda.data || ''}</td>` : ''}
                     ${index === 0 ? `<td rowspan="${rowspan}">${venda.pagamento || ''}</td>` : ''}
                     ${index === 0 ? `<td rowspan="${rowspan}">
-                            <button onclick="editarVenda('${venda.id}')">Editar</button>
-                            <button onclick="excluirVenda('${venda.id}')">Excluir</button>
+                            <button
+                                class="btn-editar"
+                                onclick="editarVenda('${venda.id}')">
+                                Editar
+                            </button>
+
+                            <button
+                                class="btn-excluir"
+                                onclick="excluirVenda('${venda.id}')">
+                                Excluir
+                            </button>
+     
                         </td>` : ''}
                 </tr>
             `;

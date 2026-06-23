@@ -98,6 +98,7 @@ body {
     background: rgb(170, 0, 0);
 }
 
+
 /* AVISOS */
 .aviso {
     background: #fff;
@@ -106,6 +107,18 @@ body {
     border-radius: 8px;
     margin-bottom: 10px;
     position: relative;
+}
+
+.btn-editar {
+    border: 1px solid #eee;
+    background: orange;
+    color: white;
+}
+
+.btn-excluir {
+    border: 1px solid #eee;
+    background: red;
+    color: white;
 }
 
 .data {
@@ -131,3 +144,4 @@ body {
     color: #666;
     display: block;
 }
+

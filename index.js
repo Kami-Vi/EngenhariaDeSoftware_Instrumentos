@@ -75,9 +75,17 @@ function renderAvisos() {
                 <small><strong>Quem escreveu:</strong> ${autor}</small>
 
                 <div style="margin-top:10px">
+                            <button
+                                class="btn-editar"
+                                onclick="editarAviso('${aviso.id}')">
+                                Editar
+                            </button>
 
-                    <button onclick="editarAviso('${aviso.id}')">Editar</button>
-                    <button onclick="excluirAviso('${aviso.id}')">Excluir</button>
+                            <button
+                                class="btn-excluir"
+                                onclick="excluirAviso('${aviso.id}')">
+                                Excluir
+                            </button>
 
                 </div>
 
