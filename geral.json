@@ -1,30 +1,104 @@
+
 {
   "produtos": [
     {
-      "id": "vh-1PWWeNQU",
-      "nome": "violao",
-      "marca": "sada",
-      "quantidade": "0",
-      "categoria": "Instrumento",
-      "preco": "2",
-      "especificacoes": "wedwe",
+      "id": "TfKkyqshlOM",
+      "nome": "Palheta Premium",
+      "marca": "Dunlop",
+      "quantidade": "50",
+      "categoria": "Acessório",
+      "preco": "5",
+      "especificacoes": "Palheta 0.88mm",
       "fornecedor": "1",
-      "garantia": "12",
-      "contato": "123124"
+      "garantia": "3",
+      "contato": "11999999999"
     },
     {
-      "id": "TfKkyqshlOM",
-      "nome": "palheta",
-      "marca": "asdasd",
-      "quantidade": "2",
-      "categoria": "Acessório",
-      "preco": "21",
-      "especificacoes": "dgdrg",
+      "id": "lbRRCAOPTcI",
+      "nome": "Violão Folk",
+      "marca": "Giannini",
+      "quantidade": "15",
+      "categoria": "Instrumento",
+      "preco": "899",
+      "especificacoes": "Cordas de aço",
       "fornecedor": "1",
       "garantia": "12",
-      "contato": "67456"
+      "contato": "11999999999"
+    },
+    {
+      "id": "Tpb53cDOUjI",
+      "nome": "Violão Clássico",
+      "marca": "Yamaha",
+      "quantidade": "10",
+      "categoria": "Instrumento",
+      "preco": "1200",
+      "especificacoes": "Cordas de nylon",
+      "fornecedor": "1",
+      "garantia": "24",
+      "contato": "11999999999"
+    },
+    {
+      "id": "prd001",
+      "nome": "Guitarra Stratocaster",
+      "marca": "Tagima",
+      "quantidade": "8",
+      "categoria": "Instrumento",
+      "preco": "1899",
+      "especificacoes": "Cor Sunburst",
+      "fornecedor": "for002",
+      "garantia": "12",
+      "contato": "1133334444"
+    },
+    {
+      "id": "prd002",
+      "nome": "Baixo 4 Cordas",
+      "marca": "Condor",
+      "quantidade": "6",
+      "categoria": "Instrumento",
+      "preco": "1699",
+      "especificacoes": "Captadores ativos",
+      "fornecedor": "for002",
+      "garantia": "12",
+      "contato": "1133334444"
+    },
+    {
+      "id": "prd003",
+      "nome": "Teclado Arranjador",
+      "marca": "Casio",
+      "quantidade": "4",
+      "categoria": "Instrumento",
+      "preco": "2499",
+      "especificacoes": "61 teclas",
+      "fornecedor": "for003",
+      "garantia": "24",
+      "contato": "1144445555"
+    },
+    {
+      "id": "prd004",
+      "nome": "Microfone Dinâmico",
+      "marca": "Shure",
+      "quantidade": "20",
+      "categoria": "Equipamento",
+      "preco": "499",
+      "especificacoes": "Modelo SM58",
+      "fornecedor": "for004",
+      "garantia": "12",
+      "contato": "1155556666"
+    },
+    {
+      "id": "prd005",
+      "nome": "Cabo P10",
+      "marca": "Santo Angelo",
+      "quantidade": "100",
+      "categoria": "Acessório",
+      "preco": "35",
+      "especificacoes": "5 metros",
+      "fornecedor": "for004",
+      "garantia": "6",
+      "contato": "1155556666"
     }
   ],
+
   "fornecedores": [
     {
       "id": "1",
@@ -34,111 +108,151 @@
       "complemento": "Matriz"
     },
     {
-      "empresa": "jtdjdfgj",
-      "cnpj": "74445555556325",
-      "cep": "10203010",
-      "complemento": "k",
-      "id": "mpr1KRwOoxM"
+      "id": "for002",
+      "empresa": "Tagima Instrumentos",
+      "cnpj": "22.333.444/0001-55",
+      "cep": "04567-890",
+      "complemento": "Centro de Distribuição"
+    },
+    {
+      "id": "for003",
+      "empresa": "Casio Brasil",
+      "cnpj": "33.444.555/0001-66",
+      "cep": "01310-100",
+      "complemento": "Filial São Paulo"
+    },
+    {
+      "id": "for004",
+      "empresa": "Áudio Pro Equipamentos",
+      "cnpj": "44.555.666/0001-77",
+      "cep": "80000-000",
+      "complemento": "Matriz Curitiba"
     }
   ],
+
   "pessoas": [
     {
-      "nome": "agata",
-      "email": "agata@askdj",
-      "cpf": "1231",
-      "telefone": "3123",
-      "categoria": "Cliente",
-      "id": "d9JhqirTBAQ"
+      "id": "d9JhqirTBAQ",
+      "nome": "Agata Silva",
+      "email": "agata@email.com",
+      "cpf": "12345678901",
+      "telefone": "49999990001",
+      "categoria": "Cliente"
     },
     {
-      "nome": "alana",
-      "email": "alana@dsfsd",
-      "cpf": "4243",
-      "telefone": "23423",
-      "categoria": "Funcionário",
-      "id": "dDT1fdz184A"
+      "id": "dDT1fdz184A",
+      "nome": "Alana Souza",
+      "email": "alana@email.com",
+      "cpf": "23456789012",
+      "telefone": "49999990002",
+      "categoria": "Funcionário"
     },
     {
-      "nome": "julia",
-      "email": "adasd@fasf",
-      "cpf": "123.123.141-43",
-      "telefone": "(43) 24242-4324",
-      "categoria": "Cliente",
-      "id": "yoVBjJuIDP4"
+      "id": "pes001",
+      "nome": "Carlos Mendes",
+      "email": "carlos@email.com",
+      "cpf": "34567890123",
+      "telefone": "49999990003",
+      "categoria": "Cliente"
+    },
+    {
+      "id": "pes002",
+      "nome": "Fernanda Lima",
+      "email": "fernanda@email.com",
+      "cpf": "45678901234",
+      "telefone": "49999990004",
+      "categoria": "Cliente"
+    },
+    {
+      "id": "pes003",
+      "nome": "Marcos Oliveira",
+      "email": "marcos@email.com",
+      "cpf": "56789012345",
+      "telefone": "49999990005",
+      "categoria": "Funcionário"
     }
   ],
+
   "vendas": [
     {
+      "id": "ven001",
       "clienteId": "d9JhqirTBAQ",
-      "cliente": "agata",
+      "cliente": "Agata Silva",
       "itens": [
         {
           "produtoId": "TfKkyqshlOM",
-          "produto": "palheta",
+          "produto": "Palheta Premium",
           "quantidade": 2,
-          "subtotal": 42
+          "subtotal": 10
         }
       ],
-      "total": 42,
+      "total": 10,
       "pagamento": "Credito",
-      "data": "2026-06-02",
-      "id": "JvkDSDZvWy0"
+      "data": "2026-06-02"
     },
     {
-      "clienteId": "d9JhqirTBAQ",
-      "cliente": "agata",
+      "id": "ven002",
+      "clienteId": "pes001",
+      "cliente": "Carlos Mendes",
       "itens": [
         {
           "produtoId": "lbRRCAOPTcI",
-          "produto": "violao",
+          "produto": "Violão Folk",
+          "quantidade": 1,
+          "subtotal": 899
+        }
+      ],
+      "total": 899,
+      "pagamento": "Pix",
+      "data": "2026-06-10"
+    },
+    {
+      "id": "ven003",
+      "clienteId": "pes002",
+      "cliente": "Fernanda Lima",
+      "itens": [
+        {
+          "produtoId": "prd004",
+          "produto": "Microfone Dinâmico",
           "quantidade": 2,
-          "subtotal": 4
+          "subtotal": 998
         },
         {
-          "produtoId": "TfKkyqshlOM",
-          "produto": "palheta",
-          "quantidade": 1,
-          "subtotal": 21
-        }
-      ],
-      "total": 25,
-      "pagamento": "Credito",
-      "data": "2026-06-22",
-      "id": "Ecq8bH-aogw"
-    },
-    {
-      "clienteId": "d9JhqirTBAQ",
-      "cliente": "agata",
-      "itens": [
-        {
-          "produtoId": "vh-1PWWeNQU",
-          "produto": "violao",
-          "quantidade": 12,
-          "subtotal": 24
-        }
-      ],
-      "total": 24,
-      "pagamento": "Pix",
-      "data": "2026-06-22",
-      "id": "gw3fXgQ3z8I"
-    },
-    {
-      "clienteId": "d9JhqirTBAQ",
-      "cliente": "agata",
-      "itens": [
-        {
-          "produtoId": "vh-1PWWeNQU",
-          "produto": "violao",
+          "produtoId": "prd005",
+          "produto": "Cabo P10",
           "quantidade": 3,
-          "subtotal": 6
+          "subtotal": 105
         }
       ],
-      "total": 6,
-      "pagamento": "Pix",
-      "data": "2026-06-22",
-      "id": "EAnefKBFFbI"
+      "total": 1103,
+      "pagamento": "Debito",
+      "data": "2026-06-15"
     }
   ],
-  "avisos": [],
+
+  "avisos": [
+    {
+      "id": "av001",
+      "titulo": "Promoção de Inverno",
+      "mensagem": "Desconto de 10% em todos os violões durante o mês.",
+      "autor": "dDT1fdz184A",
+      "data": "20/06/2026"
+    },
+    {
+      "id": "av002",
+      "titulo": "Inventário",
+      "mensagem": "Inventário geral marcado para o dia 30/06.",
+      "autor": "pes003",
+      "data": "21/06/2026"
+    },
+    {
+      "id": "av003",
+      "titulo": "Novos Produtos",
+      "mensagem": "Chegada de novos microfones e cabos.",
+      "autor": "dDT1fdz184A",
+      "data": "22/06/2026"
+    }
+  ],
+
   "$schema": "./node_modules/json-server/schema.json"
 }
