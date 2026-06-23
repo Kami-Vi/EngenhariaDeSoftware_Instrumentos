@@ -144,3 +144,19 @@ th {
 #carrinho th {
     font-size: 14px;
 }
+
+/* Badge for low stock */
+.badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 12px;
+    background: #eee;
+    color: #333;
+}
+.badge.low {
+    background: #ffe6e6;
+    color: #a00;
+    border: 1px solid #f5c2c2;
+}
