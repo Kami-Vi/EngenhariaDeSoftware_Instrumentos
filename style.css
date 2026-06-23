@@ -160,3 +160,35 @@ th {
     color: #a00;
     border: 1px solid #f5c2c2;
 }
+
+/* Modal visualizar produto */
+.modal-hidden { display: none; }
+.modal-visible { display: block; position: fixed; inset: 0; z-index: 9999; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); }
+.modal-box {
+    position: relative;
+    width: 520px;
+    max-width: 95%;
+    margin: 80px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    z-index: 10000;
+}
+.modal-close {
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+.modal-box p { margin: 8px 0; text-align: left; }
+
+/* invalid field */
+.invalid {
+    border-color: #c0392b;
+    box-shadow: 0 0 0 3px rgba(192,57,43,0.06);
+}

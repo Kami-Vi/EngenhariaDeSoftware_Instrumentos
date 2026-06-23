@@ -101,6 +101,7 @@ function renderTabela(lista) {
                 <td>${fornecedorNome}</td>
                 <td>${produto.garantia}</td>
                 <td>
+                    <button onclick="visualizarProduto('${produto.id}')">Visualizar</button>
                     <button onclick="editarProduto('${produto.id}')">Editar</button>
                     <button onclick="excluirProduto('${produto.id}')">Excluir</button>
                 </td>
@@ -110,26 +111,123 @@ function renderTabela(lista) {
 }
 
 // ==========================
+// VISUALIZAR PRODUTO
+// ==========================
+function visualizarProduto(id) {
+    const produto = produtos.find(p => String(p.id) === String(id));
+    if (!produto) return;
+
+    const content = document.querySelector('#modalContent');
+    content.innerHTML = `
+        <p><strong>Nome:</strong> ${produto.nome || ''}</p>
+        <p><strong>Marca:</strong> ${produto.marca || ''}</p>
+        <p><strong>Quantidade:</strong> ${produto.quantidade || '0'}</p>
+        <p><strong>Categoria:</strong> ${produto.categoria || ''}</p>
+        <p><strong>Preço:</strong> R$ ${produto.preco || 0}</p>
+        <p><strong>Fornecedor:</strong> ${produto.fornecedor || ''}</p>
+        <p><strong>Garantia:</strong> ${produto.garantia || ''}</p>
+        <p><strong>Contato:</strong> ${produto.contato || ''}</p>
+        <p><strong>Especificações:</strong><br>${produto.especificacoes || ''}</p>
+    `;
+
+    const modal = document.getElementById('modal-visualizar');
+    modal.classList.remove('modal-hidden');
+    modal.classList.add('modal-visible');
+}
+
+// fechar modal
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal-visualizar');
+    const close = document.getElementById('modalClose');
+    const overlay = document.getElementById('modalOverlay');
+
+    function hide() {
+        modal.classList.remove('modal-visible');
+        modal.classList.add('modal-hidden');
+    }
+
+    close?.addEventListener('click', hide);
+    overlay?.addEventListener('click', hide);
+});
+
+// ==========================
 // SALVAR PRODUTO
 // ==========================
 async function salvarProduto() {
 
-    const produto = {
-        nome: document.querySelector("#nome").value,
-        marca: document.querySelector("#marca").value,
-        quantidade: document.querySelector("#quantidade").value,
-        categoria: document.querySelector("#categoria").value,
-        preco: document.querySelector("#preco").value,
-        especificacoes: document.querySelector("#especificacoes").value,
-        fornecedor: document.querySelector("#fornecedor").value,
-        garantia: document.querySelector("#garantia").value,
-        contato: document.querySelector("#contato").value
-    };
+    // capturar elementos
+    const nomeEl = document.querySelector("#nome");
+    const marcaEl = document.querySelector("#marca");
+    const quantidadeEl = document.querySelector("#quantidade");
+    const categoriaEl = document.querySelector("#categoria");
+    const precoEl = document.querySelector("#preco");
+    const especificacoesEl = document.querySelector("#especificacoes");
+    const fornecedorEl = document.querySelector("#fornecedor");
+    const garantiaEl = document.querySelector("#garantia");
+    const contatoEl = document.querySelector("#contato");
 
-    if (!produto.nome || !produto.categoria) {
-        alert("Preencha nome e categoria!");
+    // remover marcação anterior
+    [nomeEl, categoriaEl, quantidadeEl, precoEl].forEach(el => el?.classList.remove('invalid'));
+
+    // validar campos
+    const errors = [];
+    const nome = nomeEl.value.trim();
+    const categoria = categoriaEl.value;
+    const quantidadeRaw = quantidadeEl.value;
+    const precoRaw = precoEl.value;
+    const garantiaRaw = garantiaEl.value.trim();
+    const contatoRaw = contatoEl.value.trim();
+
+    if (!nome) {
+        errors.push('Nome');
+        nomeEl.classList.add('invalid');
+    }
+
+    if (!categoria) {
+        errors.push('Categoria');
+        categoriaEl.classList.add('invalid');
+    }
+
+    if (quantidadeRaw === '' || isNaN(Number(quantidadeRaw)) || Number(quantidadeRaw) < 0) {
+        errors.push('Quantidade (número >= 0)');
+        quantidadeEl.classList.add('invalid');
+    }
+
+    if (precoRaw === '' || isNaN(Number(precoRaw)) || Number(precoRaw) < 0) {
+        errors.push('Preço (número >= 0)');
+        precoEl.classList.add('invalid');
+    }
+
+    // validar garantia (inteiro >= 0) e contato (mínimo de dígitos)
+    if (garantiaRaw !== '' && (!/^[0-9]+$/.test(garantiaRaw) || Number(garantiaRaw) < 0)) {
+        errors.push('Garantia (número inteiro >= 0)');
+        garantiaEl.classList.add('invalid');
+    }
+
+    const contatoDigits = contatoRaw.replace(/\D/g, '');
+    if (contatoRaw === '' || contatoDigits.length < 6 || !/^[0-9+()\-\s]+$/.test(contatoRaw)) {
+        errors.push('Contato (número válido com ao menos 6 dígitos)');
+        contatoEl.classList.add('invalid');
+    }
+
+    if (errors.length) {
+        alert('Corrija os campos: ' + errors.join(', '));
+        const firstInvalid = document.querySelector('.invalid');
+        firstInvalid?.focus();
         return;
     }
+
+    const produto = {
+        nome,
+        marca: marcaEl.value.trim(),
+        quantidade: String(Number(quantidadeRaw)),
+        categoria,
+        preco: String(Number(precoRaw)),
+        especificacoes: especificacoesEl.value.trim(),
+        fornecedor: fornecedorEl.value,
+        garantia: garantiaEl.value.trim(),
+        contato: contatoEl.value.trim()
+    };
 
     try {
 
@@ -237,3 +335,4 @@ function limparFormulario() {
 window.editarProduto = editarProduto;
 window.excluirProduto = excluirProduto;
 window.salvarProduto = salvarProduto;
+window.visualizarProduto = visualizarProduto;
