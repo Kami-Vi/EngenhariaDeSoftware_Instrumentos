@@ -84,10 +84,7 @@ async function salvarFornecedor() {
         return;
     }
 
-if (!cep.matches("\\d{8}")) {
-    JOptionPane.showMessageDialog(null, "CEP inválido! Deve conter 8 números.");
-    return;
-}
+
     try {
 
         if (fornecedorEditandoId) {
@@ -104,13 +101,18 @@ if (!cep.matches("\\d{8}")) {
 
         } else {
 
-            await fetch(API_FORNECEDORES, {
+            const res = await fetch(API_FORNECEDORES, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(fornecedor)
             });
+            
+            console.log(res.status);
+            
+            const data = await res.json();
+            console.log(data);
         }
 
         limparFormulario();
