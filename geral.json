@@ -101,5 +101,21 @@
       "id": "JvkDSDZvWy0"
     }
   ],
+  "avisos": [
+    {
+      "titulo": "Ferias",
+      "mensagem": "sdf",
+      "autor": "d9JhqirTBAQ",
+      "data": "19/06/2026",
+      "id": "7M6GpTv1FMI"
+    },
+    {
+      "titulo": "ygu",
+      "mensagem": "kkkk",
+      "autor": "dDT1fdz184A",
+      "data": "23/06/2026",
+      "id": "ztMgNQOT9IE"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
